@@ -2,8 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='https://deepspace.nju.edu.cn/info/1111/2342.htm'>Nanjing University</a> 
-南京大学苏州校区 科创大厦A410
+subtitle: <a href='https://deepspace.nju.edu.cn/info/1111/2342.htm'>Nanjing University</a> 南京大学苏州校区 科创大厦A410
 
 profile:
   align: right
