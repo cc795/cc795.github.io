@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: `Can Cui, Nanjing University` <br> 南京大学深空探测研究院 
+subtitle: Can Cui, Nanjing University <br> 南京大学深空探测研究院 
 
 profile:
   align: right
@@ -24,9 +24,9 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hello, Welcome to my personal website! 
+Hello, welcome to my personal website! 
 
-I am Can Cui, an Assistant Profesor in the Institute of Deep Space Exploration at Nanjing University. Before that, I recieved my bacholer degree from Pennslvania State University (2010-2014), Master degree from IoA Cambridge University (2014-2015), and PhD from Shanghai Astronomical Observatory (2016-2020). Then, I was a postdoc at DAMTP Cambridge (2020-2023) and University of Toronto (2023-2024).
+I am `Can Cui`, an Assistant Profesor in the Institute of Deep Space Exploration at Nanjing University. Before that, I recieved my bacholer degree from Pennslvania State University (2010-2014), Master degree from IoA Cambridge University (2014-2015), and PhD from Shanghai Astronomical Observatory (2016-2020). Then, I was a postdoc at DAMTP Cambridge (2020-2023) and University of Toronto (2023-2024).
 
 My research focuses on `protoplanetary disks` and `planet formation` using numerical simulations and analytical theory. 
 
