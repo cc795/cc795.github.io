@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Can Cui, Nanjing University <br> 崔灿 南京大学深空探测研究院 苏州校区科创大厦A410 
+subtitle: Can Cui, Nanjing University <br> 南京大学深空探测研究院 
 
 profile:
   align: right
