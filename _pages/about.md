@@ -27,13 +27,17 @@ Hello, and welcome to my personal website!
 
 I am `Can Cui`, an Assistant Professor at the Institute of Deep Space Exploration, Nanjing University. My research focuses on `protoplanetary disks` and `planet formation`, combining `numerical simulations` and `analytical theory`.
 
-I received my bachelor's degree from Pennsylvania State University (2010–2014), my master's degree from the Institute of Astronomy, University of Cambridge (2014–2015), and my Ph.D. from the Shanghai Astronomical Observatory (2016–2020). I subsequently held postdoctoral positions at the Department of Applied Mathematics and Theoretical Physics (DAMTP), University of Cambridge (2020–2023) and the University of Toronto (2023–2024).
+I received my bachelor's degree from Pennsylvania State University (2010–2014), my master's degree from IoA, University of Cambridge (2014–2015), and my Ph.D. from the Shanghai Astronomical Observatory (2016–2020). I subsequently held postdoctoral positions at DAMTP, University of Cambridge (2020–2023) and the University of Toronto (2023–2024).
 
-Teaching:
-Fluid Dynamics: 2025 Spring, 2025 Fall 
-Colloquium: 2026 Spring
+Teaching: <br>
+Fluid Dynamics: 2025 Spring, 2025 Fall <br>
+Colloquium: 2026 Spring <br>
 
-Students:
+Gradute Students: <br>
+Li Zhuofan <br>
+Li Minghan <br>
+Liu Qiuyi <br>
+Ma Xiaoyi <br>
 
 
 
