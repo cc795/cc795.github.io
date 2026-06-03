@@ -2,7 +2,6 @@
 layout: about
 title: about
 permalink: /
-subtitle: Can Cui, Nanjing University <br> 南京大学深空探测研究院 
 
 profile:
   align: right
