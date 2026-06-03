@@ -1,12 +1,13 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching
+title: Teaching
 description: 
 nav: true
 nav_order: 6
 calendar: false
 ---
 
-displays a collection of courses with detailed schedules, materials, and resources. You can organize your courses by years, terms, or topics.
+Fluid Dynamics: 2025 Spring, 2025 Fall
+Colloquium: 2026 Spring
 
