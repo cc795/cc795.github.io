@@ -14,6 +14,5 @@ Colloquium: 2026 Spring <br>
 Gradute Students: <br>
 Li Zhuofan 2026- <br>
 Li Minghan 2026- <br>
-Liu Qiuyi 2025-  <br>
 Ma Xiaoyi 2024- <br>
 
