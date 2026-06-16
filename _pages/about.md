@@ -7,6 +7,8 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
+  more_info: >
+    <p>ccui@nju.edu.cn</p>
 
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
@@ -31,7 +33,7 @@ I received my bachelor's degree from Pennsylvania State University, my master's 
 
 Here are my <a href="URL_DESTINATION">CV</a>/<a href="https://ui.adsabs.harvard.edu/user/libraries/zq9A1iR3QCa_BiXci_jtSQ">Publications</a>.
 
-<strong> Courses I developped at NJU:</strong>  <br>
+<strong> Courses @ NJU:</strong>  <br>
 `Fluid Dynamics`: 2025 Spring, 2025 Fall <br>
 `Colloquium`: 2026 Spring <br>
 
