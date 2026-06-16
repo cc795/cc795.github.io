@@ -23,12 +23,20 @@ latest_posts:
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
+<style>
+  .fixed-width-text {
+    max-width: 100px; /* 限制最大宽度不超过 500 像素 */
+    width: 100%;      /* 宽度在小屏幕时自适应 */
+  }
+</style>
+
 
 <a href="https://deepspace.nju.edu.cn/info/1111/2342.htm">Assistant Professor, Nanjing University</a> ccui@nju.edu.cn
-
+<p class="fixed-width-text">
 I am Can Cui (崔灿). I am an Assistant Professor at the Institute of Deep Space Exploration, Nanjing University (NJU). My research focuses on `protoplanetary disks` and `planet formation`, combining numerical simulations and analytical theory.
 
 I received my bachelor's degree from Pennsylvania State University, my master's degree from IoA, University of Cambridge, and my Ph.D. from the Shanghai Astronomical Observatory. I subsequently held postdoctoral positions at DAMTP, University of Cambridge and University of Toronto.
+</p>
 
 Here are my <a href="URL_DESTINATION">CV</a>/<a href="https://ui.adsabs.harvard.edu/user/libraries/zq9A1iR3QCa_BiXci_jtSQ">Publications</a>.
 
