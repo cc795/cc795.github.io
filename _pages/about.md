@@ -44,7 +44,7 @@ Courses @ NJU <br>
 `Fluid Dynamics`: 2025 Spring, 2025 Fall <br>
 `Colloquium`: 2026 Spring <br>
 
-Wonderful students 
+Wonderful students <br>
 `Gradute Students` <br>
 李卓帆 Li Zhuofan 2026- <br>
 李明翰 Li Minghan 2026- <br>
