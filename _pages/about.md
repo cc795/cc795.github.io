@@ -28,7 +28,7 @@ latest_posts:
 
 I am Can Cui (崔灿). I am an Assistant Professor at the Institute of Deep Space Exploration, Nanjing University (NJU). My research focuses on `protoplanetary disks` and `planet formation`, combining numerical simulations and analytical theory.
 
-I received my bachelor's degree from Pennsylvania State University, my master's degree from IoA, University of Cambridge, and my Ph.D. from the Shanghai Astronomical Observatory. I subsequently held postdoctoral positions at DAMTP, University of Cambridge and the University of Toronto.
+I received my bachelor's degree from Pennsylvania State University, my master's degree from IoA, University of Cambridge, and my Ph.D. from the Shanghai Astronomical Observatory. I subsequently held postdoctoral positions at DAMTP, University of Cambridge and University of Toronto.
 
 Here are my <a href="URL_DESTINATION">CV</a>/<a href="https://ui.adsabs.harvard.edu/user/libraries/zq9A1iR3QCa_BiXci_jtSQ">Publications</a>.
 
