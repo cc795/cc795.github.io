@@ -25,7 +25,7 @@ latest_posts:
 ---
 <style>
   .fixed-width-text {
-    max-width: 100px; /* 限制最大宽度不超过 500 像素 */
+    max-width: 400px; /* 限制最大宽度不超过 500 像素 */
     width: 100%;      /* 宽度在小屏幕时自适应 */
   }
 </style>
