@@ -29,6 +29,8 @@ Hello, and welcome to my personal website!
 
 I received my bachelor's degree from Pennsylvania State University, my master's degree from IoA, University of Cambridge, and my Ph.D. from the Shanghai Astronomical Observatory. I subsequently held postdoctoral positions at DAMTP, University of Cambridge and the University of Toronto.
 
+Here are my <a href="URL_DESTINATION">CV</a>/<a href="https://ui.adsabs.harvard.edu/user/libraries/zq9A1iR3QCa_BiXci_jtSQ">Publications</a>.
+
 <strong> Courses I developped at NJU:</strong>  <br>
 `Fluid Dynamics`: 2025 Spring, 2025 Fall <br>
 `Colloquium`: 2026 Spring <br>
