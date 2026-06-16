@@ -29,21 +29,21 @@ I am `Can Cui`, an Assistant Professor at the Institute of Deep Space Exploratio
 
 I received my bachelor's degree from Pennsylvania State University, my master's degree from IoA, University of Cambridge, and my Ph.D. from the Shanghai Astronomical Observatory. I subsequently held postdoctoral positions at DAMTP, University of Cambridge and the University of Toronto.
 
-Here are the courses I developped at NJU:
-`Fluid Dynamics`: 2025 Spring, 2025 Fall
-`Colloquium`: 2026 Spring
+<strong>Here are the courses I developped at NJU:<strong> <br>
+`Fluid Dynamics`: 2025 Spring, 2025 Fall <br>
+`Colloquium`: 2026 Spring <br>
 
-My wonderful students:
+<strong>My wonderful students:<strong> <br>
 
-Gradute Students:
-Li Zhuofan 2026-
-Li Minghan 2026-
-Liu Qiuyi 2025-
-Ma Xiaoyi 2024- PKU研究生
+Gradute Students: <br>
+Li Zhuofan 2026- <br>
+Li Minghan 2026- <br>
+Liu Qiuyi 2025- <br>
+Ma Xiaoyi 2024- PKU研究生 <br>
 
-Undergraduates:
-Pu wenxin 2025- 大创
-Pu Yangjun 2025- 毕业论文
+Undergraduates: <br>
+Pu wenxin 2025- 大创 <br>
+Pu Yangjun 2025- 毕业论文 <br>
 
 
 
