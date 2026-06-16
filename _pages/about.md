@@ -23,6 +23,8 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
+ccui@nju.edu.cn
+
 Hello, and welcome to my personal website!
 
 <strong>I am Can Cui , an Assistant Professor at the Institute of Deep Space Exploration, Nanjing University (NJU).</strong> My research focuses on `protoplanetary disks` and `planet formation`, combining `numerical simulations` and `analytical theory`.
@@ -47,7 +49,8 @@ Here are my <a href="URL_DESTINATION">CV</a>/<a href="https://ui.adsabs.harvard.
 蒲文心Pu wenxin 2025- 大创 <br>
 濮阳竣Pu Yangjun 2025- 毕业论文 <br>
 
-<iframe width="560" height="315" 
+<strong> My talk @ KITP:</strong> 
+<iframe width="800" height="500" 
   src="https://www.youtube.com/embed/aqlGPQRthf4?si=ChnIQhqAQncrln-M" 
   title="YouTube video player" 
   frameborder="0" 
