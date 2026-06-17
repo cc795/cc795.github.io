@@ -40,11 +40,11 @@ I received my bachelor's degree from Pennsylvania State University, my master's 
 
 Here are my <a href="URL_DESTINATION">CV</a>/<a href="https://ui.adsabs.harvard.edu/user/libraries/zq9A1iR3QCa_BiXci_jtSQ">Publications</a>.
 
-`Courses @ NJU` <br>
+`Courses` <br>
 Fluid Dynamics: 2025 Spring, 2025 Fall <br>
 Colloquium: 2026 Spring <br>
 
-`Wonderful students` <br>
+`Students` <br>
 Gradute Students <br>
 李卓帆 Li Zhuofan 2026- <br>
 李明翰 Li Minghan 2026- <br>
@@ -55,7 +55,7 @@ Undergraduates <br>
 蒲文心 Pu wenxin 2025- 大创 <br>
 濮阳竣 Pu Yangjun 2025- 毕业论文 <br>
 
-`Talk @ KITP`
+`Talk`
 <iframe width="800" height="500" 
   src="https://www.youtube.com/embed/aqlGPQRthf4?si=ChnIQhqAQncrln-M" 
   title="YouTube video player" 
