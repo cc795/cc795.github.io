@@ -1,0 +1,1040 @@
+
+<title>行星形成的天体物理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────  tokens  ───────────────────────────── */
+:root{
+  --paper:#FFFFFF; --surface:#FFFFFF; --sunk:#F7F7F8;
+  --ink:#111114; --body:#1C1C20; --muted:#4E4E55; --faint:#8A8A92;
+  --deep:#2A1A5E;                        /* 重点：标题 · 加粗 · 强调 */
+  --on-accent:#FFFFFF;                   /* 紫底上的文字 */
+  --rule:#9C86D8; --rule-soft:#E3E3E7;
+  --accent:#4A2F94; --accent-ink:#2A1A5E; --accent-soft:#EDE8FA; --accent-line:#BCADE6;
+  --warm:#A9541C; --warm-soft:#F8EBDF;
+  --shadow:0 1px 2px rgba(0,0,0,.06);
+  /* 西文用 Tinos（Times 度量兼容，Cambridge University Press 书刊的正文观感）；中文落到楷体 */
+  --serif:"Tinos","Times New Roman",Times,"Kaiti SC","KaiTi","STKaiti","楷体","TW-Kai","AR PL UKai CN","Noto Serif CJK SC",serif;
+  --sans:var(--serif);
+  --mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
+  /* 整块内容居中；正文行宽 = 栏宽，每行约 58–62 个汉字 */
+  --frame:820px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+  --paper:#0D0D11; --surface:#16161A; --sunk:#1C1C22;
+  --ink:#F2F2F5; --body:#DCDCE1; --muted:#A2A2AB; --faint:#7C7C86;
+  --deep:#CBB4FF;
+  --on-accent:#0D0D11;
+  --rule:#5B4A8C; --rule-soft:#2B2B33;
+  --accent:#A98BEE; --accent-ink:#CBB4FF; --accent-soft:#231B3C; --accent-line:#4E3F7D;
+  --warm:#E0A163; --warm-soft:#31220F;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0D11; --surface:#16161A; --sunk:#1C1C22;
+  --ink:#F2F2F5; --body:#DCDCE1; --muted:#A2A2AB; --faint:#7C7C86;
+  --deep:#CBB4FF;
+  --on-accent:#0D0D11;
+  --rule:#5B4A8C; --rule-soft:#2B2B33;
+  --accent:#A98BEE; --accent-ink:#CBB4FF; --accent-soft:#231B3C; --accent-line:#4E3F7D;
+  --warm:#E0A163; --warm-soft:#31220F;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+/* ─────────────────────────  language switching  ───────────────────── */
+:root:not([data-lang="en"]) .en{display:none !important}
+:root[data-lang="en"] .zh{display:none !important}
+
+/* ────────────────────────────  base  ──────────────────────────────── */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper); color:var(--body);
+  font-family:var(--serif); font-size:12.9px; line-height:1.85;
+  text-align:left;
+  font-feature-settings:"kern","liga";
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif); color:var(--deep); text-wrap:balance; margin:0}
+strong,b{color:var(--deep); font-weight:600}
+a{color:var(--deep); text-decoration:none; border-bottom:1px solid var(--accent-line)}
+a:hover{border-bottom-color:var(--accent); color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+p{margin:0 0 .9em}
+/* 整块内容居中于页面，内部文字左对齐 */
+.frame{max-width:var(--frame); margin:0 auto; padding:0 24px}
+.prose{max-width:none}
+.mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+
+/* ────────────────────────────  top bar  ───────────────────────────── */
+.bar{
+  position:sticky; top:0; z-index:50;
+  background:color-mix(in srgb,var(--paper) 90%,transparent);
+  backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.bar-in{display:flex; align-items:center; gap:16px; height:47px; max-width:var(--frame); margin:0 auto; padding:0 24px}
+.brand{font-size:13.2px; font-weight:600; color:var(--deep); white-space:nowrap}
+.bar nav{display:flex; gap:14px; flex:1; overflow-x:auto; scrollbar-width:none}
+.bar nav::-webkit-scrollbar{display:none}
+.bar nav a{
+  font-size:11.2px; color:var(--muted); border:0; white-space:nowrap;
+  padding:4px 0; border-bottom:2px solid transparent; transition:color .15s;
+}
+.bar nav a:hover{color:var(--deep); border-bottom-color:var(--accent-line)}
+.bar nav a.active{color:var(--deep); border-bottom-color:var(--accent); font-weight:600}
+.switch{display:flex; gap:5px}
+.switch button{
+  font-family:var(--serif); font-size:10.5px; letter-spacing:.02em;
+  background:transparent; color:var(--muted); border:1px solid var(--rule);
+  border-radius:999px; padding:3px 10px; cursor:pointer; line-height:1.4;
+}
+.switch button:hover{border-color:var(--accent-line); color:var(--deep)}
+.switch button[aria-pressed="true"]{background:var(--accent); color:var(--on-accent); border-color:var(--accent)}
+
+/* ────────────────────────────  hero  ──────────────────────────────── */
+.hero{padding:48px 0 28px; border-bottom:1px solid var(--rule); text-align:center}
+.eyebrow{font-size:14.5px; font-weight:600; letter-spacing:.06em; color:var(--deep); margin-bottom:16px}
+.hero h1{font-size:clamp(1.774rem,3.737vw,2.522rem); line-height:1.18; font-weight:600; letter-spacing:-.008em; color:var(--deep)}
+.hero .sub{font-size:clamp(0.868rem,1.406vw,0.971rem); color:var(--muted); font-style:italic; margin:12px auto 0; max-width:66ch; line-height:1.8}
+.hero .sub .zh,.figcap .zh{font-style:normal}
+.meta{display:flex; flex-wrap:wrap; justify-content:center; gap:10px 26px; margin:22px 0 0; padding:14px 0 0; border-top:1px solid var(--rule-soft)}
+.meta div{padding:0}
+.meta dt{font-size:10.5px; letter-spacing:.04em; color:var(--faint)}
+.meta dd{margin:2px 0 0; font-size:12.2px; color:var(--deep); font-weight:600}
+.tbd{font-size:.9em; font-weight:400; color:var(--warm); background:var(--warm-soft); padding:2px 7px; border-radius:3px}
+
+/* ──────────────────────────  disk figure  ─────────────────────────── */
+.diskwrap{margin:30px 0 4px; overflow-x:auto}
+.stage{
+  position:relative; width:100%; min-width:640px; aspect-ratio:1000/600;
+  border:1px solid var(--rule-soft); border-radius:5px; background:var(--surface);
+  overflow:hidden; cursor:pointer;
+}
+.stage canvas{display:block; width:100%; height:100%}
+.tl{
+  display:flex; align-items:center; gap:12px; margin-top:10px;
+  font-family:var(--mono); font-size:10.2px; color:var(--muted);
+}
+.tlbtn{
+  flex:none; width:26px; height:26px; border-radius:50%; cursor:pointer;
+  border:1px solid var(--rule); background:var(--surface); color:var(--deep);
+  font-family:var(--mono); font-size:9.5px; line-height:1; display:grid; place-items:center; padding:0;
+}
+.tlbtn:hover{border-color:var(--accent); color:var(--accent)}
+.tl input[type=range]{
+  flex:1; -webkit-appearance:none; appearance:none; height:3px; border-radius:2px;
+  background:var(--rule-soft); cursor:pointer; margin:0;
+}
+.tl input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none; width:13px; height:13px; border-radius:50%;
+  background:var(--accent); border:2px solid var(--surface); box-shadow:0 0 0 1px var(--accent);
+}
+.tl input[type=range]::-moz-range-thumb{
+  width:11px; height:11px; border-radius:50%; background:var(--accent); border:2px solid var(--surface);
+}
+.tlnum{flex:none; min-width:78px; text-align:right; color:var(--deep); font-variant-numeric:tabular-nums}
+.stage .hint{
+  position:absolute; right:9px; bottom:7px; z-index:2; pointer-events:none;
+  font-family:var(--mono); font-size:9.2px; letter-spacing:.04em; color:var(--faint);
+  background:color-mix(in srgb,var(--surface) 82%,transparent); padding:2px 7px; border-radius:3px;
+  transition:opacity .3s;
+}
+.stage.paused .hint{color:var(--accent)}
+.figcap{font-style:italic; font-size:12px; color:var(--muted); margin:10px auto 0; max-width:74ch; line-height:1.8}
+
+/* ──────────────────────────  textbook card  ───────────────────────── */
+.book{display:flex; gap:20px; align-items:flex-start; margin:22px 0 0; padding:0}
+.bookart{
+  flex:none; width:132px; aspect-ratio:2/3; position:relative; display:block;
+  border:1px solid var(--rule); border-radius:3px; overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,.10); background:var(--sunk);
+}
+.bookart img{width:100%; height:100%; object-fit:cover; display:block}
+.bookfall{
+  display:none; position:absolute; inset:0; padding:16px 13px;
+  flex-direction:column; justify-content:space-between; color:#F3EFFA;
+  background:var(--sunk); color:var(--faint); text-align:center; gap:10px; align-items:center;
+}
+.bookart.nocover .bookfall{display:flex}
+.bookfall .bt{font-size:11.6px; line-height:1.4; font-weight:400; opacity:.9}
+.bookfall .ba{font-size:10.4px; opacity:.85; line-height:1.4}
+.bookfall .bp{font-family:var(--mono); font-size:8.2px; letter-spacing:.08em; opacity:.8}
+.bookfall .brule{height:1px; background:rgba(255,255,255,.35); margin:9px 0}
+.bookmeta{flex:1; min-width:0}
+.bookmeta .bl{
+  font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:6px;
+}
+.bookmeta p{margin:0 0 .5em}
+.booknote{font-size:11.6px; color:var(--muted); font-style:italic}
+
+/* ────────────────────────────  sections  ──────────────────────────── */
+section{padding:48px 0; border-bottom:1px solid var(--rule); scroll-margin-top:58px}
+section:last-of-type{border-bottom:0}
+.shead{margin-bottom:18px}
+.snum{
+  display:block; width:max-content; margin:0 0 9px;
+  font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.09em;
+  color:var(--deep); background:var(--accent-soft); padding:3px 11px; border-radius:999px;
+}
+.shead h2{font-size:clamp(1.214rem,2.34vw,1.495rem); font-weight:600; letter-spacing:-.006em; line-height:1.34}
+.lede{font-size:13.6px; color:var(--body)}
+
+/* three questions */
+.qs{display:grid; grid-template-columns:repeat(auto-fit,minmax(246px,1fr)); gap:15px; margin-top:22px}
+.q{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:19px 17px; box-shadow:var(--shadow)}
+.q .qn{
+  display:inline-grid; place-items:center; width:24px; height:24px; border-radius:50%;
+  background:var(--accent); color:var(--on-accent); font-family:var(--mono); font-size:10.5px; font-weight:500;
+}
+.q h3{font-size:14px; font-weight:600; margin:10px 0 7px; line-height:1.5; color:var(--deep)}
+.q p{font-size:12.2px; color:var(--muted); margin:0; line-height:1.82}
+.q .span{display:inline-block; margin-top:10px; font-size:10.8px; font-weight:600; color:var(--deep); background:var(--accent-soft); padding:3px 9px; border-radius:3px}
+
+/* prep list */
+.steps{counter-reset:s; list-style:none; padding:0; margin:20px 0 0}
+.steps li{counter-increment:s; position:relative; padding:11px 0 11px 34px; border-top:1px solid var(--rule-soft); font-size:12.6px}
+.steps li:last-child{border-bottom:1px solid var(--rule-soft)}
+.steps li::before{
+  content:counter(s); position:absolute; left:0; top:15px;
+  font-family:var(--mono); font-size:10.5px; font-weight:500; color:var(--on-accent);
+  background:var(--accent); width:20px; height:20px; border-radius:50%;
+  display:grid; place-items:center;
+}
+.steps strong{color:var(--deep); font-weight:600}
+
+/* lectures */
+.lectures{margin-top:22px; border-top:2px solid var(--deep)}
+.lec{display:grid; grid-template-columns:50px minmax(0,1fr) 124px; gap:0 18px; padding:16px 0; border-bottom:1px solid var(--rule-soft); align-items:start}
+.lec:hover{background:var(--sunk)}
+.lec .id{font-family:var(--mono); font-size:11px; font-weight:500; color:var(--accent); padding-top:3px}
+.lec h3{font-size:14px; font-weight:600; color:var(--deep); line-height:1.52; margin-bottom:4px}
+.lec p{font-size:12.3px; color:var(--body); margin:0; line-height:1.85}
+.lec .read{font-family:var(--mono); font-size:10.5px; color:var(--muted); padding-top:4px; line-height:1.85}
+.part{
+  display:flex; align-items:center; gap:11px; margin:26px 0 0;
+  font-size:11px; font-weight:600; letter-spacing:.05em; color:var(--deep);
+}
+.part::after{content:""; flex:1; height:1px; background:var(--rule)}
+
+/* tables */
+.tablewrap{overflow-x:auto; margin-top:22px; border:1px solid var(--rule); border-radius:5px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:580px; font-size:12.2px}
+th,td{text-align:left; padding:9px 13px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+thead th{
+  font-size:10.5px; letter-spacing:.04em; color:var(--on-accent); font-weight:600;
+  background:var(--accent); border-bottom:0; position:sticky; top:0;
+}
+tbody tr:nth-child(even){background:var(--sunk)}
+tbody tr:hover{background:var(--accent-soft)}
+tbody tr:last-child td{border-bottom:0}
+td.w{font-family:var(--mono); font-size:11px; font-weight:500; color:var(--accent); white-space:nowrap}
+td.d{font-family:var(--mono); font-size:11px; color:var(--muted); white-space:nowrap}
+
+/* assessment */
+.grades{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:15px; margin-top:22px}
+.grade{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:20px 17px; box-shadow:var(--shadow)}
+.grade .pct{font-size:2.268rem; line-height:1; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.grade h3{font-size:12.9px; font-weight:600; color:var(--deep); margin:10px 0 6px}
+.grade p{font-size:12.2px; color:var(--muted); margin:0; line-height:1.82}
+
+/* references */
+.refs{margin-top:18px}
+.refs h3{
+  font-size:11.3px; font-weight:600; letter-spacing:.04em; color:var(--deep);
+  margin:24px 0 9px; padding-bottom:6px; border-bottom:1px solid var(--rule);
+}
+.refs ul{margin:0; padding-left:19px; list-style:disc}
+.refs li{margin:7px 0; font-size:12.5px; color:var(--body); line-height:1.85}
+.refs li::marker{color:var(--accent-line)}
+.refs .note{color:var(--muted); font-size:12px}
+
+/* downloads */
+.files{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin-top:20px}
+.file{
+  display:flex; gap:12px; align-items:flex-start;
+  padding:16px; background:var(--surface); border:1px solid var(--rule);
+  border-radius:5px; box-shadow:var(--shadow);
+}
+.file .ext{font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.05em; color:var(--deep); background:var(--accent-soft); padding:3px 7px; border-radius:3px; margin-top:3px}
+.file b{display:block; color:var(--deep); font-weight:600; font-size:12.6px; margin-bottom:1px}
+.file span{font-size:11.8px; color:var(--muted)}
+
+/* footer */
+footer{padding:32px 0 48px; color:var(--faint); font-size:11.3px; border-top:1px solid var(--rule)}
+footer p{margin:0 0 5px}
+
+@media (max-width:760px){
+  body{font-size:12.6px}
+  .frame{padding:0 18px}
+  .bar-in{padding:0 18px; gap:12px; height:46px}
+  .brand{font-size:12.6px}
+  section{padding:36px 0}
+  .hero{padding:34px 0 22px}
+  .lec{grid-template-columns:44px minmax(0,1fr); gap:0 12px}
+  .lec .read{grid-column:2; padding-top:8px}
+  .meta{gap:9px 20px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none !important; transition:none !important}}
+</style>
+
+
+<div class="bar">
+  <div class="bar-in">
+    <span class="brand"><span class="zh">行星形成</span><span class="en">Planet Formation</span></span>
+    <nav>
+      <a href="#intro"><span class="zh">课程简介</span><span class="en">Overview</span></a>
+      <a href="#lectures"><span class="zh">大纲</span><span class="en">Syllabus</span></a>
+      <a href="#assessment"><span class="zh">考核方式</span><span class="en">Assessment</span></a>
+      <a href="#refs"><span class="zh">参考文献</span><span class="en">References</span></a>
+    </nav>
+    <div class="switch">
+      <button id="zhBtn" type="button" aria-pressed="true">中文</button>
+      <button id="enBtn" type="button" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="frame">
+    <div class="eyebrow"><span class="zh">南京大学 · 深空探测科学与技术研究院 · 国际化课程</span><span class="en">Nanjing University · School of Astronomy and Space Science · Graduate course</span></div>
+    <h1><span class="zh">行星形成 Planet Formation</span><span class="en">Planet Formation</span></h1>
+
+
+    <dl class="meta">
+      <div><dt><span class="zh">任课教师</span><span class="en">Instructor</span></dt><dd>崔灿</dd></div>
+      <div><dt><span class="zh">邮箱</span><span class="en">Email</span></dt><dd><a href="mailto:ccui@nju.edu.cn">ccui@nju.edu.cn</a></dd></div>
+      <div><dt><span class="zh">学期</span><span class="en">Term</span></dt><dd><span class="zh">2026秋季</span><span class="en">Fall 2026</span></dd></div>
+      <div><dt><span class="zh">上课时间</span><span class="en">Time</span></dt><dd><span class="zh">周四 10:10–12:00</span><span class="en">Thursdays 10:00–12:00</span></dd></div>
+      <div><dt><span class="zh">教室</span><span class="en">Room</span></dt><dd><span class="zh">南雍-东112<span class="zh"> </span><span class="en">TBA</span></span></dd></div>
+      <div><dt><span class="zh">学分</span><span class="en">Hours / credits</span></dt><dd><span class="zh">2</span><span class="en">2 credits</span></dd></div>
+    </dl>
+
+    <div class="diskwrap">
+      <div class="stage" id="stage" role="img"
+           aria-label="原行星盘截面动画：尘埃沉降、向内漂移、在压强极大处成环并坍缩为星子 / Animated cross-section of a protoplanetary disk: dust settles, drifts inward, is trapped at a pressure maximum and collapses into planetesimals">
+        <canvas id="diskCanvas"></canvas>
+      </div>
+      <div class="tl">
+        <button class="tlbtn" id="tlPlay" type="button" aria-label="play / pause">&#10074;&#10074;</button>
+        <input id="tlRange" type="range" min="0" max="1000" value="0" step="1" aria-label="disk age">
+        <span class="tlnum" id="tlNum">0.00 Myr</span>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<main class="frame">
+
+<!-- ───────────────────────── 1 · overview ───────────────────────── -->
+<section id="intro">
+  <div class="shead"><span class="snum mono">01</span><h2><span class="zh">课程简介</span><span class="en">Course overview</span></h2></div>
+  <div class="prose">
+    <p class="lede zh">
+<li>已发现的系外行星已有6000余颗（<a href="https://exoplanetarchive.ipac.caltech.edu/" target="_blank" rel="noopener">NASA Exoplanet Archive</a>）。</li>
+  <li>因此，行星形成是一门被观测推着走的理论。</li>
+  <li>过去十五年里，ALMA、JWST 和凌星巡天把这门学科从少数几个约束条件，推到了必须对上千个系统负责的地步。</li>
+  <li>本课程按照物理过程组织：先建立盘的结构与演化，再处理固体的输运与聚集，最后才谈行星本身的生长、迁移与系统结构。</li>
+
+  
+  <br><p class="lede en">Planet formation is a theory course driven by observation. In the last fifteen years ALMA, JWST and the transit surveys have taken the subject from a handful of constraints to a field answerable to thousands of systems. The course is organised by physical process rather than by phenomenon: first the structure and evolution of the gas disk, then the transport and concentration of solids, and only then the growth, migration and final architecture of the planets themselves.</p>
+
+
+    <figure class="book">
+      <a class="bookart" id="a20art" href="https://www.cambridge.org/highereducation/books/astrophysics-of-planet-formation/71A7A5E2C4A6A0F9F1B5C7B1F9F5C0A1" target="_blank" rel="noopener">
+        <img id="a20cover" src="https://assets.cambridge.org/97811084/20501/large_cover/9781108420501i.jpg" alt="Astrophysics of Planet Formation, 2nd edition — Cambridge University Press" loading="lazy">
+        <span class="bookfall">
+          <span class="bp">COVER · ISBN 978-1-108-42050-1</span>
+          <span class="bt"><span class="zh">封面图需联网加载</span><span class="en">cover loads from the publisher</span></span>
+          <span class="bp">assets.cambridge.org</span>
+        </span>
+      </a>
+      <figcaption class="bookmeta">
+        <div class="bl"><span class="zh"></span><span class="en">Principal text</span></div>
+        <p class="zh"><strong>教材 1：</strong>P. J. Armitage, <em>Astrophysics of Planet Formation</em>, 2nd ed., Cambridge University Press (2020)，以下记作 <span class="mono">A20</span>。该书为版权教材，<strong>免费下载？</strong></p>
+        <p class="zh"><strong>教材 2：</strong>P. J. Armitage, <em>Physical Processes in Protoplanetary Disks</em>, Saas-Fee Advanced Course 45，<a href="https://arxiv.org/abs/1509.06382">arXiv:1509.06382</a>，以下记作 <span class="mono">SF</span>，<strong>可免费下载</strong>。</p>
+        <p class="en"><strong>Principal text:</strong> P. J. Armitage, <em>Astrophysics of Planet Formation</em>, 2nd ed., Cambridge University Press (2020) — cited below as <span class="mono">A20</span>. It is in copyright and not free to download; read it through the library's Cambridge Core subscription or buy a copy.</p>
+        <p class="en"><strong>Companion notes:</strong> P. J. Armitage, <em>Physical Processes in Protoplanetary Disks</em>, Saas-Fee Advanced Course 45, <a href="https://arxiv.org/abs/1509.06382">arXiv:1509.06382</a> — cited as <span class="mono">SF</span>, freely available and closely complementary.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ───────────────────────── 4 · lectures ───────────────────────── -->
+<section id="lectures">
+  <div class="shead"><span class="snum mono">02</span><h2><span class="zh">大纲</span><span class="en">Syllabus</span></h2></div>
+  <div class="prose">
+  </div>
+
+  <div class="lectures">
+    <div class="lec">
+      <div class="id">L01</div>
+      <div>
+        <h3><span class="zh">导论与观测背景</span><span class="en">Introduction and observational context</span></h3>
+        <p class="zh">课程安排。理论必须解释的两组数据：太阳系结构与陨石年代学，以及系外行星统计。YSO 分类与 α<sub>IR</sub>、吸积率、盘的寿命。尘埃连续谱与分子线诊断。第一批物理：竖直静力平衡、h = c<sub>s</sub>/Ω、亚开普勒转动、最小质量太阳星云、时标层级。</p>
+        <p class="en">Logistics. The two datasets a theory must explain: Solar System architecture with meteoritic chronology, and exoplanet demographics. YSO classification and α<sub>IR</sub>, accretion rates, disk lifetimes. Dust continuum and molecular-line diagnostics. First physics: vertical hydrostatic equilibrium, h = c<sub>s</sub>/Ω, sub-Keplerian rotation, the MMSN, the hierarchy of timescales.</p>
+      </div>
+      <div class="read">A20 ch. 1–2<br>SF §1–2</div>
+    </div>
+
+    <div class="part"><span class="zh">Q1 · 气体盘的演化</span><span class="en">Q1 · Evolution of the gas disk</span></div>
+
+    <div class="lec">
+      <div class="id">L02</div>
+      <div>
+        <h3><span class="zh">盘的结构 I —— 竖直结构与温度</span><span class="en">Disk structure I — vertical and thermal</span></h3>
+        <p class="zh">静力平衡与高斯剖面；自引力与磁压带来的偏离。径向力平衡与竖直剪切。被动辐照盘：外张、Chiang–Goldreich 双层模型、过热表面层。粘滞加热盘。作为热力学地标的雪线。</p>
+        <p class="en">Hydrostatic equilibrium and the Gaussian profile; departures from it through self-gravity and magnetic pressure. Radial force balance and vertical shear. Passive irradiated disks: flaring, the Chiang–Goldreich two-layer model, superheated surface layers. Viscously heated disks. Ice lines as thermodynamic landmarks.</p>
+      </div>
+      <div class="read">A20 §2.2–2.4<br>SF §3.1–3.2</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L03</div>
+      <div>
+        <h3><span class="zh">盘的结构 II —— 不透明度、电离与化学</span><span class="en">Disk structure II — opacity, ionization, chemistry</span></h3>
+        <p class="zh">尘埃与气体的不透明度。热电离；宇宙线、X 射线与放射性核素的非热电离。电离度与气体–磁场的耦合。盘化学概览：冻结、雪线、C/O 比，以及 ALMA 和 JWST 实际测到的是什么。</p>
+        <p class="en">Dust and gas opacities. Thermal ionization; non-thermal ionization by cosmic rays, X-rays and radionuclides. Ionization fraction and the coupling of gas to magnetic fields. Disk chemistry in outline: freeze-out, snow lines, C/O ratios, and what ALMA and JWST actually measure.</p>
+      </div>
+      <div class="read">A20 §2.5<br>SF §3.3</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L04</div>
+      <div>
+        <h3><span class="zh">盘的演化 I —— 经典粘滞盘</span><span class="en">Disk evolution I — the classical viscous disk</span></h3>
+        <p class="zh">把角动量输运写成有效粘滞。推导 Σ(r,t) 的扩散方程；格林函数解与自相似解；粘滞扩展与适用范围。α 参数化。边界条件：零力矩内边界、磁层截断、双星中的盘。粘滞加热与竖直温度结构。</p>
+        <p class="en">Angular momentum transport as an effective viscosity. Derivation of the diffusion equation for Σ(r,t); Green's-function and self-similar solutions; viscous spreading and the limits of validity. The α-prescription. Boundary conditions: the zero-torque inner boundary, magnetospheric truncation, disks in binaries. Viscous heating and the vertical temperature structure.</p>
+      </div>
+      <div class="read">A20 §3.1–3.2<br>SF §4.1–4.3</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L05</div>
+      <div>
+        <h3><span class="zh">盘的演化 II —— 输运的起源</span><span class="en">Disk evolution II — the origin of transport</span></h3>
+        <p class="zh">为什么分子粘滞不够。流体力学路线：线性稳定性、Rayleigh 判据、VSI / COS / SBI 与 zombie vortex。自引力、Toomre 判据、引力湍流与碎裂。磁转动不稳定性：局域分析、增长率与饱和。</p>
+        <p class="en">Why molecular viscosity fails. Hydrodynamic routes: linear stability, the Rayleigh criterion, VSI / COS / SBI and the zombie-vortex instability. Self-gravity, the Toomre criterion, gravito-turbulence and fragmentation. The magnetorotational instability: local analysis, growth rates, saturation.</p>
+      </div>
+      <div class="read">A20 §3.3<br>SF §5.1–5.4</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L06</div>
+      <div>
+        <h3><span class="zh">非理想 MHD、盘风与间歇吸积</span><span class="en">Non-ideal MHD, disk winds and episodic accretion</span></h3>
+        <p class="zh">欧姆、双极与 Hall 三个区域，以及各自在盘中的位置。死区及其后果。磁离心风与磁热风；磁场的输运。间歇吸积：FU Ori 与 EX Lup 爆发、S 曲线、热不稳定与死区不稳定。</p>
+        <p class="en">Ohmic, ambipolar and Hall regimes, and where each dominates in a protoplanetary disk. The dead zone and its consequences. Magnetocentrifugal and magnetothermal winds; magnetic-field transport. Episodic accretion: FU Ori and EX Lup outbursts, the S-curve, thermal and dead-zone instabilities.</p>
+      </div>
+      <div class="read">A20 §3.4<br>SF §5.4–5.5, §6</div>
+    </div>
+
+    <div class="part"><span class="zh">Q2 · 固体的输运与聚集</span><span class="en">Q2 · Transport and concentration of solids</span></div>
+
+    <div class="lec">
+      <div class="id">L07</div>
+      <div>
+        <h3><span class="zh">固体的空气动力学</span><span class="en">Aerodynamics of solids</span></h3>
+        <p class="zh">曳力区（Epstein、Stokes）与 Stokes 数。竖直沉降与沉降–搅动平衡。径向漂移：Weidenschilling 问题与漂移壁垒。湍流扩散；Nakagawa–Sekiya–Hayashi 平衡解。颗粒堆积。漂移与颗粒生长的观测特征。</p>
+        <p class="en">Drag regimes (Epstein, Stokes) and the Stokes number. Vertical settling and the settling–stirring balance. Radial drift: the Weidenschilling problem and the drift barrier. Turbulent diffusion; the Nakagawa–Sekiya–Hayashi equilibrium. Particle pile-ups. Observational signatures of drift and of grain growth.</p>
+      </div>
+      <div class="read">A20 §4.1–4.2<br>SF §7.1–7.2</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L08</div>
+      <div>
+        <h3><span class="zh">星子的形成</span><span class="en">Planetesimal formation</span></h3>
+        <p class="zh">碰撞凝聚；弹跳与碎裂壁垒。压强极大与粒子陷阱；纬向流、涡旋与 Rossby 波不稳定性。流动不稳定性：物理机制、线性判据与数值结果。卵石云的引力坍缩与初始星子质量函数；与小行星带和柯伊伯带的比较。</p>
+        <p class="en">Collisional coagulation; the bouncing and fragmentation barriers. Pressure maxima and particle traps; zonal flows, vortices and the Rossby-wave instability. The streaming instability: mechanism, linear criterion, numerical results. Gravitational collapse of pebble clouds and the initial planetesimal mass function; comparison with the asteroid and Kuiper belts.</p>
+      </div>
+      <div class="read">A20 §4.3–4.5<br>SF §7.3, §8</div>
+    </div>
+
+    <div class="part"><span class="zh">Q3 · 从星子到行星系统</span><span class="en">Q3 · From planetesimals to planetary systems</span></div>
+
+    <div class="lec">
+      <div class="id">L09</div>
+      <div>
+        <h3><span class="zh">从星子到原行星</span><span class="en">From planetesimals to protoplanets</span></h3>
+        <p class="zh">引力聚焦与带弥散的二体问题。失控生长与寡头生长。粘滞搅动与动力学摩擦。孤立质量。N 体方法及其局限。晚期阶段：巨撞击、月球形成事件，以及 Hf–W 定年给出的时标。</p>
+        <p class="en">Gravitational focusing and the two-body problem with velocity dispersion. Runaway and oligarchic growth. Viscous stirring and dynamical friction. The isolation mass. N-body methods and their limitations. The late stage: giant impacts, the Moon-forming event, and the timescale from Hf–W chronometry.</p>
+      </div>
+      <div class="read">A20 §5.1–5.3</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L10</div>
+      <div>
+        <h3><span class="zh">卵石吸积</span><span class="en">Pebble accretion</span></h3>
+        <p class="zh">气动耦合固体的吸积：Bondi 与 Hill 区、吸积率、卵石隔离质量。与星子吸积的比较。全局卵石流与受漂移限制的核生长。对木星形成与太阳系同位素二分性的意义。</p>
+        <p class="en">Accretion of aerodynamically coupled solids: the Bondi and Hill regimes, accretion rates, the pebble isolation mass. Comparison with planetesimal accretion. Global pebble flux and drift-limited core growth. Implications for the formation of Jupiter and for the Solar System's isotopic dichotomy.</p>
+      </div>
+      <div class="read">A20 §5.4<br><span class="zh">近期文献</span><span class="en">current literature</span></div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L11</div>
+      <div>
+        <h3><span class="zh">巨行星的形成</span><span class="en">Giant planet formation</span></h3>
+        <p class="zh">核吸积：吸积包层的结构、临界核质量、Kelvin–Helmholtz 阶段与失控气体吸积。时标困难及其解决方案。引力不稳定路线：冷却判据、碎裂半径，以及它能与不能产生什么。二者与观测到的巨行星族的对照。</p>
+        <p class="en">Core accretion: the structure of an accreting envelope, the critical core mass, the Kelvin–Helmholtz phase and runaway gas accretion. Timescale problems and proposed solutions. The gravitational-instability route: cooling criteria, fragmentation radii, and what GI can and cannot produce. Confronting both with the observed giant-planet population.</p>
+      </div>
+      <div class="read">A20 §6.1–6.3</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L12</div>
+      <div>
+        <h3><span class="zh">行星–盘相互作用与迁移</span><span class="en">Planet–disk interaction and migration</span></h3>
+        <p class="zh">共振力矩：Lindblad 与共转。I 型迁移及其符号；饱和、热力矩与动力学力矩。开缝与 II 型迁移。III 型／失控迁移。偏心率与倾角的阻尼。共振俘获与共振链；用迁移解释热木星、共振超级地球系统与盘的子结构。</p>
+        <p class="en">Resonant torques: Lindblad and corotation. Type I migration and its sign; saturation, thermal and dynamical torques. Gap opening and Type II migration. Type III / runaway migration. Eccentricity and inclination damping. Resonant capture and chains; migration as an explanation for hot Jupiters, resonant super-Earth systems, and disk substructure.</p>
+      </div>
+      <div class="read">A20 §7.1–7.3<br>SF §8</div>
+    </div>
+
+    <div class="lec">
+      <div class="id">L13</div>
+      <div>
+        <h3><span class="zh">系统结构、盘的消散与综合</span><span class="en">System architectures, dispersal and synthesis</span></h3>
+        <p class="zh">盘的消散：光致蒸发（EUV/FUV/X 射线）与 MHD 风；双时标演化与过渡盘。盘后演化：动力学不稳定、高偏心迁移、潮汐。大气逃逸与半径谷。碎屑盘。族群合成：现有模型能重现什么，又在哪里失败。开放问题与未来十年的数据。</p>
+        <p class="en">Disk dispersal: photoevaporation (EUV/FUV/X-ray) and MHD winds; two-timescale evolution and transition disks. Post-disk evolution: dynamical instability, high-eccentricity migration, tides. Atmospheric mass loss and the radius valley. Debris disks. Population synthesis: what current models reproduce and where they fail. Open problems and the next decade of data.</p>
+      </div>
+      <div class="read">A20 §7.4, ch. 8<br>SF §9</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── 6 · assessment ───────────────────────── -->
+<section id="assessment">
+  <div class="shead"><span class="snum mono">03</span><h2><span class="zh">考核方式</span><span class="en">Assessment</span></h2></div>
+  <div class="grades">
+
+    <div class="grade">
+      <div class="pct">20%</div>
+      <h3><span class="zh">出勤率</span><span class="en">Attendance</span></h3>
+      <p class="zh">上课，积极思考。</p>
+      <p class="en">One paper from the last two or three years — an ALMA/JWST observation or a simulation — 25 minutes plus discussion. A list of candidates circulates in the first week.</p>
+    </div>
+
+    <div class="grade">
+      <div class="pct">20%</div>
+      <h3><span class="zh">作业（2次）</span><span class="en">Problem sets (2–3 HW assignments)</span></h3>
+      <p class="zh">解析、编程类。</p>
+    </div>
+
+    <div class="grade">
+      <div class="pct">60%</div>
+      <h3><span class="zh">期末项目</span><span class="en">Final project</span></h3>
+      <p class="zh">30mins口头报告：对行星形成中的某一物理过程进行介绍。由任课教师给定研究内容，在课程过半之后会让抽签选择。</p>
+      <p class="en">A report of about eight pages: either a small research calculation or a critical review with a point of view. Connecting it to your own research is encouraged.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── 8 · references ───────────────────────── -->
+<section id="refs">
+  <div class="shead"><span class="snum mono">04</span><h2><span class="zh">参考文献</span><span class="en">References</span></h2></div>
+  <div class="refs prose">
+    <h3><span class="zh">综述</span><span class="en">Reviews</span></h3>
+    <ul>
+      <li>Kley &amp; Nelson (2012), <em>ARA&amp;A</em> <b>50</b>, 211 — <span class="zh">行星–盘相互作用</span><span class="en">planet–disk interaction</span>. <a href="https://doi.org/10.1146/annurev-astro-081811-125523">doi</a></li>
+      <li>Andrews (2020), <em>ARA&amp;A</em> <b>58</b>, 483 — <span class="zh">原行星盘结构的观测</span><span class="en">observations of disk structure</span>. <a href="https://doi.org/10.1146/annurev-astro-031220-010302">doi</a></li>
+      <li>Zhu &amp; Dong (2021), <em>ARA&amp;A</em> <b>59</b>, 291 — <span class="zh">系外行星统计及其理论含义</span><span class="en">exoplanet statistics and their theoretical implications</span>. <a href="https://doi.org/10.1146/annurev-astro-112420-020055">doi</a></li>
+      <li>Öberg &amp; Bergin (2021), <em>Physics Reports</em> — <span class="zh">行星形成的天体化学</span><span class="en">astrochemistry of planet formation</span>. <a href="https://doi.org/10.1016/j.physrep.2020.09.004">doi</a></li>
+      <li>Manara et al. (2023), <em>Protostars and Planets VII</em> — <span class="zh">年轻恒星与盘的族群统计</span><span class="en">demographics of young stars and their disks</span>. <a href="https://arxiv.org/abs/2203.09930">arXiv:2203.09930</a></li>
+      <li>Lesur et al. (2023), <em>Protostars and Planets VII</em> — <span class="zh">盘中的湍流、盘风与角动量输运</span><span class="en">turbulence, winds and angular momentum transport</span>. <a href="https://arxiv.org/abs/2203.09821">arXiv:2203.09821</a></li>
+      <li>Drążkowska et al. (2023), <em>Protostars and Planets VII</em> — <span class="zh">从尘埃到行星</span><span class="en">from dust to planets</span>. <a href="https://arxiv.org/abs/2203.09759">arXiv:2203.09759</a></li>
+    </ul>
+
+    <h3><span class="zh">检索工具</span><span class="en">Finding the literature</span></h3>
+    <ul>
+      <li><a href="https://ui.adsabs.harvard.edu/">NASA ADS</a> — <span class="zh">天文文献检索的标准入口，做引文网络分析很方便。</span><span class="en">the standard entry point, and the easiest place to follow a citation network.</span></li>
+      <li><a href="https://arxiv.org/list/astro-ph.EP/recent">arXiv astro-ph.EP</a> — <span class="zh">地球与行星天体物理，每日更新。</span><span class="en">Earth and Planetary Astrophysics, updated daily.</span></li>
+      <li><a href="https://www.alphaxiv.org/">alphaXiv</a> — <span class="zh">在 arXiv 论文上做公开评注。</span><span class="en">open commentary on arXiv papers.</span></li>
+      <li><a href="https://almascience.eso.org/alma-data">ALMA Science Archive</a> · <a href="https://mast.stsci.edu/">MAST</a> — <span class="zh">期末项目若要用真实数据，从这两处取。</span><span class="en">where to get real data if your final project needs it.</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="frame">
+  <p><span class="zh">页面最后更新：2026-09-15 21:29 CST</span><span class="en">Last updated 2026-09-15 21:29 CST.</span></p>
+</footer>
+
+<script>
+/* ───── protoplanetary disk: settling · drift · trapping · planetesimals ───── */
+(function(){
+  var stage = document.getElementById('stage'),
+      cv    = document.getElementById('diskCanvas'),
+      rng_  = document.getElementById('tlRange'),
+      btn   = document.getElementById('tlPlay'),
+      num   = document.getElementById('tlNum');
+  if (!stage || !cv) return;
+  var ctx = cv.getContext('2d');
+
+  var VW = 1000, VH = 600;
+  var X0 = 92, X1 = 966, Y0 = 292;
+  var RMIN = 0.03, RMAX = 130;      /* linear radius axis, 0 – 130 AU */
+  var L0 = Math.log10(RMIN), L1 = Math.log10(RMAX), DL = L1 - L0;
+  var R_SNOW = 2.7, R_TRAP = 12;
+  var LSNOW = Math.log10(R_SNOW), LTRAP = Math.log10(R_TRAP);
+  /* a chain of pressure maxima: each one traps dust into a ring, clearing a gap outside it */
+  /* a leaky pile-up just outside the snow line: ices sublimate, vapour re-condenses,
+     grain properties change — dust from the outer disk jams here before leaking inwards */
+  var SNOW_PILE = { l: Math.log10(3.4), w: 0.11, a: 0.94 };
+  var TRAPS = [ { l: Math.log10(12), w: 0.11, a: 2.15 },
+                { l: Math.log10(34), w: 0.10, a: 1.95 },
+                { l: Math.log10(90), w: 0.10, a: 1.80 } ];
+
+  var DT = 0.05, STEPS = 1200, AGE_END = 1.0;   /* 1200 steps span 1 Myr */
+  var ALPHA = 3e-3;                             /* turbulent α sets the dust layer */
+  function gauss(){ return (rnd() + rnd() + rnd() - 1.5) * 2; }
+
+  SITES = [SNOW_PILE, TRAPS[0], TRAPS[1], TRAPS[2]];
+
+  /* where grains actually pile up: solve grad(l) = 0 near the jam */
+  function siteL(T){
+    return T.a > 1 ? T.l + (-0.85 + Math.sqrt(Math.log(T.a))) * T.w   /* true trap: grad = 0 */
+                   : T.l - 0.85 * T.w;                               /* traffic jam: grad minimum */
+  }
+
+  /* icons, smallest to largest: Mercury, Mars, Earth, Jupiter */
+  var KIND = ['mercury', 'mars', 'earth', 'jupiter'];
+
+  function planetIcon(ctx, kind, cx, cy, R){
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.clip();
+
+    function disc(c){ ctx.fillStyle = c; ctx.fillRect(cx - R, cy - R, 2 * R, 2 * R); }
+    function blob(fx, fy, fr, c, a){
+      ctx.globalAlpha = a; ctx.fillStyle = c;
+      ctx.beginPath(); ctx.ellipse(cx + fx * R, cy + fy * R, fr * R, fr * R * 0.82, 0, 0, 6.2832); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    function band(fy, fh, c, a){
+      ctx.globalAlpha = a; ctx.fillStyle = c;
+      ctx.fillRect(cx - R, cy + fy * R, 2 * R, fh * R);
+      ctx.globalAlpha = 1;
+    }
+
+    if (kind === 'mercury'){
+      disc('#9B948E');
+      blob(-0.30, -0.22, 0.24, '#7E7772', 0.85);
+      blob( 0.26,  0.18, 0.30, '#8B847E', 0.7);
+      blob( 0.02,  0.42, 0.16, '#6F6864', 0.8);
+      blob(-0.34,  0.30, 0.13, '#6F6864', 0.7);
+    } else if (kind === 'mars'){
+      disc('#C1603A');
+      blob( 0.10, -0.06, 0.42, '#A64B2C', 0.75);
+      blob(-0.34,  0.26, 0.22, '#8E3D22', 0.7);
+      ctx.globalAlpha = 0.95; ctx.fillStyle = '#F4EFE9';       /* polar caps */
+      ctx.beginPath(); ctx.ellipse(cx, cy - R * 0.86, R * 0.55, R * 0.24, 0, 0, 6.2832); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(cx, cy + R * 0.92, R * 0.40, R * 0.18, 0, 0, 6.2832); ctx.fill();
+      ctx.globalAlpha = 1;
+    } else if (kind === 'earth'){
+      disc('#2E6FA8');
+      blob(-0.26, -0.20, 0.34, '#3E8C5A', 0.95);              /* land */
+      blob( 0.30,  0.12, 0.30, '#4E9A63', 0.95);
+      blob( 0.02,  0.52, 0.22, '#D9C89B', 0.85);
+      ctx.globalAlpha = 0.55; ctx.fillStyle = '#FFFFFF';       /* cloud streaks */
+      ctx.beginPath(); ctx.ellipse(cx - R * 0.1, cy - R * 0.5, R * 0.75, R * 0.16, -0.2, 0, 6.2832); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(cx + R * 0.2, cy + R * 0.42, R * 0.6, R * 0.13, 0.15, 0, 6.2832); ctx.fill();
+      ctx.globalAlpha = 1;
+    } else {                                                   /* jupiter */
+      disc('#D8C3A0');
+      band(-0.92, 0.26, '#C0A87F', 0.9);
+      band(-0.50, 0.20, '#E7D9BE', 0.9);
+      band(-0.22, 0.20, '#B4996F', 0.9);
+      band( 0.06, 0.16, '#EFE3CB', 0.9);
+      band( 0.30, 0.22, '#BFA37A', 0.9);
+      band( 0.66, 0.26, '#A98C65', 0.85);
+      ctx.globalAlpha = 0.95; ctx.fillStyle = '#B4553C';        /* great red spot */
+      ctx.beginPath(); ctx.ellipse(cx + R * 0.22, cy + R * 0.30, R * 0.30, R * 0.15, 0, 0, 6.2832); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    /* terminator: night side away from the star */
+    var sh = ctx.createLinearGradient(cx - R, cy, cx + R, cy);
+    sh.addColorStop(0,   'rgba(8,4,20,0)');
+    sh.addColorStop(0.5, 'rgba(8,4,20,0.12)');
+    sh.addColorStop(1,   'rgba(8,4,20,0.62)');
+    ctx.fillStyle = sh; ctx.fillRect(cx - R, cy - R, 2 * R, 2 * R);
+    ctx.restore();
+  }
+
+  var LOGX = true;                                   /* logarithmic radius axis */
+  function X(l){
+    return LOGX ? X0 + (l - L0) / DL * (X1 - X0)
+                : X0 + (Math.pow(10, l) / RMAX) * (X1 - X0);
+  }
+  function invX(x){                                  /* screen x -> log10 r */
+    var f = (x - X0) / (X1 - X0);
+    return LOGX ? L0 + f * DL : Math.log10(Math.max(RMIN, f * RMAX));
+  }
+  function H(l){
+    return LOGX ? 20 + 66 * Math.pow((l - L0) / DL, 1.15)
+                : 10 + 82 * Math.pow(Math.pow(10, l) / RMAX, 0.62);
+  }
+  function OM(l){ return Math.pow(Math.pow(10, l), -1.5); }          /* Ω ∝ r^-3/2, sets settling */
+  /* drift: dlnr/dt ∝ η Ω, with η ∝ (h/r)² ∝ r^1/2 — so v_r is ~constant with radius */
+  function ETAOM(l){ return Math.pow(10, -l); }
+  function grad(l){
+    var g = 1, i, T, u;
+    for (i = 0; i < TRAPS.length; i++){
+      T = TRAPS[i]; u = (l - T.l) / T.w;
+      g -= T.a * Math.exp(-Math.pow(u + 0.85, 2));
+    }
+    u = (l - SNOW_PILE.l) / SNOW_PILE.w;
+    g -= SNOW_PILE.a * Math.exp(-Math.pow(u + 0.85, 2));
+    return g;
+  }
+
+  /* deterministic RNG so the timeline can be scrubbed backwards */
+  var seed = 0;
+  function rnd(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+
+  var C = {}, cs;
+  function palette(){
+    cs = getComputedStyle(document.documentElement);
+    ['paper','surface','ink','body','muted','faint','deep','rule','rule-soft',
+     'accent','accent-line','warm'].forEach(function(k){ C[k] = cs.getPropertyValue('--' + k).trim(); });
+  }
+  palette();
+  function lang(){ return document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'zh'; }
+
+  /* ── state ── */
+  var N = 300, P = [], PL = [], step = 0, nextBirth = 0, lost = 0;
+  var SITES, PBIRTH = [700, 900, 820, 740],      /* snow line first, then outer → inner */
+      PMIG = [0.00065, 0.00052, 0.00040, 0.00030]; /* type-I migration, dex per step  */
+  var PLN = [];
+
+  function reset(){
+    seed = 20260915; P = []; PL = []; step = 0; nextBirth = 130; lost = 0;
+    PLN = [];
+    for (var q = 0; q < SITES.length; q++){
+      var l0 = siteL(SITES[q]);
+      PLN.push({ l: l0, l0: l0, born: PBIRTH[q], mig: PMIG[q] });
+    }
+    for (var i = 0; i < N; i++){
+      P.push({ l: L0 + 0.12 * DL + rnd() * 0.88 * DL,       /* dust spread through the disk */
+               St: Math.pow(10, -3.2 + 3.9 * rnd()),
+               z: (rnd() * 2 - 1) * 2.6,                     /* puffy: not yet settled       */
+               rock: false, gone: false });
+    }
+    for (var j = 0; j < P.length; j++) P[j].rock = P[j].l < LSNOW;
+  }
+
+  function advance(){                                   /* one physics step */
+    for (var i = 0; i < P.length; i++){
+      var p = P[i]; if (p.gone) continue;
+      var om = OM(p.l), St = p.St;
+      /* rates are capped inside ~1 AU: there Ω is so large that everything would finish
+         within a couple of frames and read as flicker rather than as motion */
+      var em = Math.min(ETAOM(p.l), 1.0);
+      p.l += -0.52 * DT * em * (St / (1 + St * St)) * grad(p.l);
+      /* settling against turbulent stirring: equilibrium h_d/h_g = sqrt(α/(α+St)),
+         set by α and St alone — not by radius */
+      var kset = Math.min(26 * St * om, 0.35), zeq = 3.0 * Math.sqrt(ALPHA / (ALPHA + St));
+      var decay = Math.exp(-kset * DT);                    /* exact for the OU process, */
+      p.z = p.z * decay + zeq * Math.sqrt(1 - decay * decay) * gauss();   /* stable for any kΔt */
+      if (!p.rock && p.l < LSNOW){ p.rock = true; p.St *= 0.45; }          /* ices sublimate */
+      else if (p.rock && p.l > LSNOW + 0.05){ p.rock = false; p.St /= 0.45; } /* and re-condense */
+      if (p.l <= L0 + 0.02 && !p.gone){ p.gone = true; lost++; }   /* accreted by the star */
+      if (p.l >= L1) p.l = L1;
+      if (Math.abs(p.z) > 3.4) p.z = (p.z > 0 ? 1 : -1) * 3.4;
+    }
+    step++;
+
+    for (var w = 0; w < PLN.length; w++){                 /* planet–disk interaction */
+      var pw = PLN[w];
+      if (step > pw.born && pw.l > L0 + 0.45) pw.l -= pw.mig;
+    }
+  }
+
+  function goTo(target){
+    target = Math.max(0, Math.min(STEPS, Math.round(target)));
+    if (target < step) reset();
+    while (step < target) advance();
+  }
+
+  /* ── layout ── */
+  var W = 0, Hp = 0, S = 1, dpr = 1;
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = stage.clientWidth; Hp = stage.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(Hp * dpr);
+    S = W / VW;
+  }
+
+  var LANDMARKS = [
+    { r: 2.7, zh: '水雪线',        en: 'water snow line',     y: 34 },
+    { r: 34,  zh: 'ALMA 环与缝',   en: 'ALMA rings and gaps', y: 34, ring: true }
+  ];
+  var TICKS_LOG = [0.1, 1, 10, 100], TICKS_LIN = [20, 40, 60, 80, 100, 120];
+
+  function render(){
+    ctx.setTransform(dpr * S, 0, 0, dpr * S, 0, 0);
+    ctx.clearRect(0, 0, VW, VH);
+
+    function envelope(k){
+      ctx.beginPath(); var x, l;
+      for (x = X0; x <= X1; x += 6){ l = invX(x); ctx.lineTo(x, Y0 - H(l) * k); }
+      for (x = X1; x >= X0; x -= 6){ l = invX(x); ctx.lineTo(x, Y0 + H(l) * k); }
+      ctx.closePath();
+    }
+    var wg = ctx.createLinearGradient(X0, 0, X1, 0);
+    wg.addColorStop(0, C.warm);                                   /* warm inside the snow line */
+    wg.addColorStop(LOGX ? 0.30 : 0.025, C.warm);
+    wg.addColorStop(LOGX ? 0.62 : 0.11,  C.accent);
+    wg.addColorStop(1, C.accent);
+    ctx.fillStyle = wg;
+    ctx.globalAlpha = 0.09; envelope(2.7); ctx.fill();
+    ctx.globalAlpha = 0.10; envelope(1.6); ctx.fill();
+    ctx.globalAlpha = 0.12; envelope(0.8); ctx.fill();
+    ctx.globalAlpha = 1;
+
+    ctx.strokeStyle = C.ink; ctx.globalAlpha = 0.28; ctx.lineWidth = 0.8;
+    ctx.beginPath(); ctx.moveTo(X0, Y0); ctx.lineTo(X1, Y0); ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    var sg = ctx.createRadialGradient(64, Y0, 0, 64, Y0, 48);
+    sg.addColorStop(0, C.warm); sg.addColorStop(0.35, C.warm); sg.addColorStop(1, 'transparent');
+    ctx.globalAlpha = 0.9; ctx.fillStyle = sg;
+    ctx.beginPath(); ctx.arc(64, Y0, 48, 0, 6.2832); ctx.fill();
+    ctx.globalAlpha = 1; ctx.fillStyle = C.warm;
+    ctx.beginPath(); ctx.arc(64, Y0, 18, 0, 6.2832); ctx.fill();
+
+    var xs = X(LSNOW);
+    ctx.save(); ctx.setLineDash([3, 4]); ctx.strokeStyle = C.muted; ctx.globalAlpha = 0.5; ctx.lineWidth = 0.9;
+    ctx.beginPath(); ctx.moveTo(xs, Y0 - 130); ctx.lineTo(xs, Y0 + 130); ctx.stroke(); ctx.restore();
+
+    for (var tI = 0; tI < TRAPS.length; tI++){
+      ctx.save(); ctx.translate(X(siteL(TRAPS[tI])), Y0); ctx.scale(1, 2.1);
+      var tg = ctx.createRadialGradient(0, 0, 0, 0, 0, 24);
+      tg.addColorStop(0, C.accent); tg.addColorStop(0.55, C.accent); tg.addColorStop(1, 'transparent');
+      ctx.globalAlpha = 0.15; ctx.fillStyle = tg;
+      ctx.beginPath(); ctx.arc(0, 0, 24, 0, 6.2832); ctx.fill();
+      ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+
+    for (var i = 0; i < P.length; i++){
+      var p = P[i]; if (p.gone) continue;
+      var h = H(p.l), px = X(p.l), py = Y0 - p.z * h;
+      var rad = Math.min(6.2, 0.7 + 6.0 * Math.pow(p.St, 0.45));
+      var col = p.rock ? C.warm : C['accent-line'];
+
+      /* tail length ∝ the real drift speed v_r ∝ St/(1+St²) — nearly constant with radius,
+         so the outer disk shows motion even though the log axis compresses it */
+      var vph = (p.St / (1 + p.St * p.St)) * grad(p.l);
+      var tl = 44 * Math.abs(vph);
+      if (tl > 1.2){
+        var dir = vph > 0 ? 1 : -1;                 /* inward drift trails outward */
+        var tg2 = ctx.createLinearGradient(px, py, px + dir * tl, py);
+        tg2.addColorStop(0, col); tg2.addColorStop(1, 'transparent');
+        ctx.globalAlpha = 0.5; ctx.strokeStyle = tg2;
+        ctx.lineWidth = Math.max(0.9, rad * 0.75); ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px + dir * tl, py); ctx.stroke();
+      }
+
+      /* inside the snow line the mantle has sublimated: a bare rocky core.
+         outside it, the same core carries an icy mantle — drawn as a pale shell. */
+      if (p.rock){
+        ctx.fillStyle = C.warm; ctx.globalAlpha = 0.85;
+        ctx.beginPath(); ctx.arc(px, py, rad * 0.72, 0, 6.2832); ctx.fill();
+      } else if (rad > 2.0){
+        /* icy mantle: filled pale, plus an outline so the grain still reads as
+           BIGGER than its bare core against a light background */
+        ctx.fillStyle = C['accent-line']; ctx.globalAlpha = 0.8;
+        ctx.beginPath(); ctx.arc(px, py, rad * 1.25, 0, 6.2832); ctx.fill();
+        ctx.strokeStyle = C.accent; ctx.globalAlpha = 0.65; ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.arc(px, py, rad * 1.25, 0, 6.2832); ctx.stroke();
+        ctx.fillStyle = C.warm; ctx.globalAlpha = 1;                   /* rocky core */
+        ctx.beginPath(); ctx.arc(px, py, rad * 0.62, 0, 6.2832); ctx.fill();
+      } else {
+        ctx.fillStyle = C.accent; ctx.globalAlpha = 0.5 + 0.35 * Math.pow(Math.min(p.St, 1), 0.25);
+        ctx.beginPath(); ctx.arc(px, py, rad, 0, 6.2832); ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    /* planets: the end point of the ring, drawn where the grains piled up */
+    for (var pi = 0; pi < PLN.length; pi++){
+      var g = (step - PLN[pi].born) / 150;
+      if (g <= 0) continue;
+      g = Math.min(1, g);
+      var ease = 1 - Math.pow(1 - g, 3);
+      /* mass is set where it formed (pebble isolation mass M_iso ∝ r^0.75, R ∝ M^(1/3) ∝ r^0.25);
+         the planet then migrates inwards, carrying that mass with it */
+      var lp = PLN[pi].l, cx = X(lp), cy = Y0;
+      var R = 7.6 * Math.pow(Math.pow(10, PLN[pi].l0), 0.25) * ease;
+      if (!(R > 0.8)) continue;                     /* just born: nothing to draw yet */
+
+      if (PLN[pi].l0 - lp > 0.01){                  /* migration trail */
+        ctx.globalAlpha = 0.5 * ease; ctx.strokeStyle = C.accent; ctx.lineWidth = 0.9;
+        ctx.save(); ctx.setLineDash([2, 3]);
+        ctx.beginPath(); ctx.moveTo(X(PLN[pi].l0), cy); ctx.lineTo(cx + R, cy); ctx.stroke();
+        ctx.restore();
+      }
+
+      /* glow: the accreting envelope */
+      var hg = ctx.createRadialGradient(cx, cy, R * 0.8, cx, cy, R * 3.0);
+      hg.addColorStop(0, C.accent); hg.addColorStop(1, 'transparent');
+      ctx.globalAlpha = 0.30 * ease; ctx.fillStyle = hg;
+      ctx.beginPath(); ctx.arc(cx, cy, R * 3.0, 0, 6.2832); ctx.fill();
+
+      /* body */
+      ctx.globalAlpha = 1;
+      planetIcon(ctx, KIND[pi], cx, cy, R);
+
+      /* rim light along the lit limb */
+      ctx.globalAlpha = 0.9 * ease; ctx.strokeStyle = '#FFF1DE'; ctx.lineWidth = 1.1;
+      ctx.beginPath(); ctx.arc(cx, cy, Math.max(0.3, R - 0.5), Math.PI * 0.62, Math.PI * 1.52); ctx.stroke();
+
+      ctx.globalAlpha = 1;
+    }
+
+    var LG = lang(), mono = cs.getPropertyValue('--mono');
+    ctx.textAlign = 'center';
+    for (var m = 0; m < LANDMARKS.length; m++){
+      var d = LANDMARKS[m], dx = X(Math.log10(d.r));
+      ctx.strokeStyle = (d.trap || d.ring) ? C.accent : C.rule;
+      ctx.globalAlpha = (d.trap || d.ring) ? 0.75 : 0.85; ctx.lineWidth = 0.9;
+      ctx.beginPath(); ctx.moveTo(dx, d.y + 9); ctx.lineTo(dx, Y0 - H(Math.log10(d.r)) * 2.1 - 10); ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.font = '600 13px ' + mono;
+      ctx.fillStyle = (d.trap || d.ring) ? C.accent : C.deep;
+      ctx.fillText(LG === 'en' ? d.en : d.zh, dx, d.y);
+    }
+
+    ctx.strokeStyle = C.rule; ctx.globalAlpha = 0.9; ctx.lineWidth = 0.9;
+    ctx.beginPath(); ctx.moveTo(X0, 562); ctx.lineTo(X1, 562); ctx.stroke();
+    ctx.font = '400 11px ' + mono; ctx.fillStyle = C.faint;
+    var TICKS = LOGX ? TICKS_LOG : TICKS_LIN;
+    for (var n = 0; n < TICKS.length; n++){
+      var tx = X(Math.log10(TICKS[n]));
+      ctx.beginPath(); ctx.moveTo(tx, 557); ctx.lineTo(tx, 567); ctx.stroke();
+      ctx.fillText(TICKS[n] + (LOGX || n === TICKS.length - 1 ? ' AU' : ''), tx, 582);
+    }
+    ctx.globalAlpha = 1;
+    ctx.fillText(LG === 'en' ? 'star' : '恒星', 64, 366);
+  }
+
+  /* ── clock, timeline, controls ── */
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var playing = !reduce, last = 0, acc = 0, frames = 0;
+
+  function readout(){
+    var age = step / STEPS * AGE_END;
+    num.textContent = age.toFixed(2) + ' Myr';
+    rng_.value = String(Math.round(step / STEPS * 1000));
+  }
+  function setPlaying(v){
+    playing = v;
+    btn.innerHTML = v ? '&#10074;&#10074;' : '&#9654;';
+    btn.setAttribute('aria-pressed', String(v));
+    stage.classList.toggle('paused', !v);
+  }
+
+  function frame(now){
+    var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+    last = now;
+    if (playing){
+      acc += dt;
+      while (acc > 0.025){                   /* 40 physics steps per second */
+        acc -= 0.025;
+        if (step >= STEPS) reset();          /* loop back to t = 0          */
+        advance();
+      }
+      readout();
+    }
+    if ((frames++ % 45) === 0) palette();
+    render();
+    requestAnimationFrame(frame);
+  }
+
+  rng_.addEventListener('input', function(){
+    setPlaying(false);
+    goTo(Number(rng_.value) / 1000 * STEPS);
+    readout(); render();
+  });
+  btn.addEventListener('click', function(){ setPlaying(!playing); });
+
+  stage.addEventListener('click', function(){ setPlaying(!playing); });
+
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt); rt = setTimeout(function(){ resize(); render(); }, 140);
+  });
+
+  resize(); reset(); goTo(340); readout(); setPlaying(!reduce);
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function(){
+  var img = document.getElementById('a20cover'), art = document.getElementById('a20art');
+  if (!img || !art) return;
+  function fallback(){ img.style.display = 'none'; art.classList.add('nocover'); }
+  img.addEventListener('error', fallback);
+  if (img.complete && !img.naturalWidth) fallback();
+})();
+</script>
+
+<script>
+(function(){
+  var root = document.documentElement,
+      zh = document.getElementById('zhBtn'),
+      en = document.getElementById('enBtn'),
+      KEY = 'pf-course-lang';
+
+  function apply(lang){
+    if (lang !== 'en') lang = 'zh';
+    root.setAttribute('data-lang', lang);
+    root.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
+    zh.setAttribute('aria-pressed', String(lang === 'zh'));
+    en.setAttribute('aria-pressed', String(lang === 'en'));
+    document.title = lang === 'en'
+      ? 'Astrophysics of Planet Formation'
+      : '行星形成的天体物理';
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  apply(saved === 'en' ? 'en' : 'zh');
+
+  zh.addEventListener('click', function(){ apply('zh'); });
+  en.addEventListener('click', function(){ apply('en'); });
+
+  var links = {}, targets = [];
+  Array.prototype.forEach.call(document.querySelectorAll('.bar nav a'), function(a){
+    var id = a.getAttribute('href').slice(1), el = document.getElementById(id);
+    if (el) { links[id] = a; targets.push(el); }
+  });
+  if (window.IntersectionObserver && targets.length) {
+    var seen = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ seen[e.target.id] = e.isIntersecting; });
+      var current = null;
+      targets.forEach(function(t){ if (seen[t.id] && !current) current = t.id; });
+      for (var k in links) links[k].classList.toggle('active', k === current);
+    }, { rootMargin: '-64px 0px -70% 0px' });
+    targets.forEach(function(t){ io.observe(t); });
+  }
+})();
+</script>
+
+
