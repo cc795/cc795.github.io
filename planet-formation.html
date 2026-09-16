@@ -1,4 +1,5 @@
 
+<meta charset="utf-8">
 <title>行星形成的天体物理</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +20,7 @@
   --sans:var(--serif);
   --mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
   /* 整块内容居中；正文行宽 = 栏宽，每行约 58–62 个汉字 */
-  --frame:820px;
+  --frame:1500px;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -53,7 +54,7 @@
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
 body{
   margin:0; background:var(--paper); color:var(--body);
-  font-family:var(--serif); font-size:12.9px; line-height:1.85;
+  font-family:var(--serif); font-size:20.8px; line-height:1.85;
   text-align:left;
   font-feature-settings:"kern","liga";
   -webkit-font-smoothing:antialiased;
@@ -65,7 +66,7 @@ a:hover{border-bottom-color:var(--accent); color:var(--accent)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
 p{margin:0 0 .9em}
 /* 整块内容居中于页面，内部文字左对齐 */
-.frame{max-width:var(--frame); margin:0 auto; padding:0 24px}
+.frame{max-width:var(--frame); margin:0 auto; padding:0 18px}
 .prose{max-width:none}
 .mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
 
@@ -76,19 +77,26 @@ p{margin:0 0 .9em}
   backdrop-filter:saturate(1.4) blur(10px);
   border-bottom:1px solid var(--rule);
 }
-.bar-in{display:flex; align-items:center; gap:16px; height:47px; max-width:var(--frame); margin:0 auto; padding:0 24px}
-.brand{font-size:13.2px; font-weight:600; color:var(--deep); white-space:nowrap}
-.bar nav{display:flex; gap:14px; flex:1; overflow-x:auto; scrollbar-width:none}
+.bar-in{display:flex; align-items:center; gap:16px; height:58px; max-width:var(--frame); margin:0 auto; padding:0 18px}
+.brand{font-size:20.8px; font-weight:600; color:var(--deep); white-space:nowrap}
+.bar nav{display:flex; gap:20px; flex:1; align-self:stretch; align-items:stretch; overflow-x:auto; scrollbar-width:none}
 .bar nav::-webkit-scrollbar{display:none}
 .bar nav a{
-  font-size:11.2px; color:var(--muted); border:0; white-space:nowrap;
-  padding:4px 0; border-bottom:2px solid transparent; transition:color .15s;
+  display:flex; align-items:center; color:var(--muted); border:0; white-space:nowrap;
+  padding:0; text-decoration:none; transition:color .15s;
 }
-.bar nav a:hover{color:var(--deep); border-bottom-color:var(--accent-line)}
-.bar nav a.active{color:var(--deep); border-bottom-color:var(--accent); font-weight:600}
+.bar nav a{font-size:20.8px}
+.bar nav a:hover{
+  color:var(--deep); text-decoration:underline; text-decoration-color:var(--accent-line);
+  text-decoration-thickness:2px; text-underline-offset:5px;
+}
+.bar nav a.active{
+  color:var(--deep); font-weight:600; text-decoration:underline; text-decoration-color:var(--accent);
+  text-decoration-thickness:2px; text-underline-offset:5px;
+}
 .switch{display:flex; gap:5px}
 .switch button{
-  font-family:var(--serif); font-size:10.5px; letter-spacing:.02em;
+  font-family:var(--serif); font-size:20.8px; letter-spacing:.02em;
   background:transparent; color:var(--muted); border:1px solid var(--rule);
   border-radius:999px; padding:3px 10px; cursor:pointer; line-height:1.4;
 }
@@ -97,14 +105,14 @@ p{margin:0 0 .9em}
 
 /* ────────────────────────────  hero  ──────────────────────────────── */
 .hero{padding:48px 0 28px; border-bottom:1px solid var(--rule); text-align:center}
-.eyebrow{font-size:14.5px; font-weight:600; letter-spacing:.06em; color:var(--deep); margin-bottom:16px}
-.hero h1{font-size:clamp(1.774rem,3.737vw,2.522rem); line-height:1.18; font-weight:600; letter-spacing:-.008em; color:var(--deep)}
-.hero .sub{font-size:clamp(0.868rem,1.406vw,0.971rem); color:var(--muted); font-style:italic; margin:12px auto 0; max-width:66ch; line-height:1.8}
+.eyebrow{font-size:20.8px; font-weight:600; letter-spacing:.06em; color:var(--ink); margin-bottom:16px}
+.hero h1{font-size:clamp(1.95rem,3.9vw,2.7rem); line-height:1.18; font-weight:600; letter-spacing:-.008em; color:var(--deep)}
+.hero .sub{font-size:20.8px; color:var(--muted); font-style:italic; margin:12px auto 0; max-width:66ch; line-height:1.8}
 .hero .sub .zh,.figcap .zh{font-style:normal}
-.meta{display:flex; flex-wrap:wrap; justify-content:center; gap:10px 26px; margin:22px 0 0; padding:14px 0 0; border-top:1px solid var(--rule-soft)}
+.meta{display:flex; flex-wrap:wrap; justify-content:center; gap:12px 34px; margin:22px 0 0; padding:14px 0 0; border-top:1px solid var(--rule-soft)}
 .meta div{padding:0}
-.meta dt{font-size:10.5px; letter-spacing:.04em; color:var(--faint)}
-.meta dd{margin:2px 0 0; font-size:12.2px; color:var(--deep); font-weight:600}
+.meta dt{font-size:20.8px; letter-spacing:.04em; color:var(--faint)}
+.meta dd{margin:2px 0 0; font-size:20.8px; color:var(--ink); font-weight:600}
 .tbd{font-size:.9em; font-weight:400; color:var(--warm); background:var(--warm-soft); padding:2px 7px; border-radius:3px}
 
 /* ──────────────────────────  disk figure  ─────────────────────────── */
@@ -117,12 +125,12 @@ p{margin:0 0 .9em}
 .stage canvas{display:block; width:100%; height:100%}
 .tl{
   display:flex; align-items:center; gap:12px; margin-top:10px;
-  font-family:var(--mono); font-size:10.2px; color:var(--muted);
+  font-family:var(--mono); font-size:20.8px; color:var(--muted);
 }
 .tlbtn{
   flex:none; width:26px; height:26px; border-radius:50%; cursor:pointer;
   border:1px solid var(--rule); background:var(--surface); color:var(--deep);
-  font-family:var(--mono); font-size:9.5px; line-height:1; display:grid; place-items:center; padding:0;
+  font-family:var(--mono); font-size:20.8px; line-height:1; display:grid; place-items:center; padding:0;
 }
 .tlbtn:hover{border-color:var(--accent); color:var(--accent)}
 .tl input[type=range]{
@@ -139,119 +147,129 @@ p{margin:0 0 .9em}
 .tlnum{flex:none; min-width:78px; text-align:right; color:var(--deep); font-variant-numeric:tabular-nums}
 .stage .hint{
   position:absolute; right:9px; bottom:7px; z-index:2; pointer-events:none;
-  font-family:var(--mono); font-size:9.2px; letter-spacing:.04em; color:var(--faint);
+  font-family:var(--mono); font-size:20.8px; letter-spacing:.04em; color:var(--faint);
   background:color-mix(in srgb,var(--surface) 82%,transparent); padding:2px 7px; border-radius:3px;
   transition:opacity .3s;
 }
 .stage.paused .hint{color:var(--accent)}
-.figcap{font-style:italic; font-size:12px; color:var(--muted); margin:10px auto 0; max-width:74ch; line-height:1.8}
+.figcap{font-style:italic; font-size:20.8px; color:var(--muted); margin:10px auto 0; max-width:74ch; line-height:1.8}
 
 /* ──────────────────────────  textbook card  ───────────────────────── */
 .book{display:flex; gap:20px; align-items:flex-start; margin:22px 0 0; padding:0}
 .bookart{
-  flex:none; width:132px; aspect-ratio:2/3; position:relative; display:block;
+  flex:none; width:156px; aspect-ratio:2/3; position:relative; display:block;
   border:1px solid var(--rule); border-radius:3px; overflow:hidden;
   box-shadow:0 2px 10px rgba(0,0,0,.10); background:var(--sunk);
 }
 .bookart img{width:100%; height:100%; object-fit:cover; display:block}
 .bookfall{
-  display:none; position:absolute; inset:0; padding:16px 13px;
+  display:none; position:absolute; inset:0; padding:14px 9px; overflow-wrap:anywhere;
   flex-direction:column; justify-content:space-between; color:#F3EFFA;
   background:var(--sunk); color:var(--faint); text-align:center; gap:10px; align-items:center;
 }
 .bookart.nocover .bookfall{display:flex}
-.bookfall .bt{font-size:11.6px; line-height:1.4; font-weight:400; opacity:.9}
-.bookfall .ba{font-size:10.4px; opacity:.85; line-height:1.4}
-.bookfall .bp{font-family:var(--mono); font-size:8.2px; letter-spacing:.08em; opacity:.8}
+.bookfall .bt{font-size:20.8px; line-height:1.4; font-weight:400; opacity:.9}
+.bookfall .ba{font-size:20.8px; opacity:.85; line-height:1.4}
+.bookfall .bp{font-family:var(--mono); font-size:20.8px; letter-spacing:.08em; opacity:.8}
 .bookfall .brule{height:1px; background:rgba(255,255,255,.35); margin:9px 0}
 .bookmeta{flex:1; min-width:0}
 .bookmeta .bl{
-  font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  font-family:var(--mono); font-size:20.8px; letter-spacing:.1em; text-transform:uppercase;
   color:var(--accent); margin-bottom:6px;
 }
 .bookmeta p{margin:0 0 .5em}
-.booknote{font-size:11.6px; color:var(--muted); font-style:italic}
+.booknote{font-size:20.8px; color:var(--muted); font-style:italic}
 
 /* ────────────────────────────  sections  ──────────────────────────── */
-section{padding:48px 0; border-bottom:1px solid var(--rule); scroll-margin-top:58px}
+section{padding:48px 0; border-bottom:0; scroll-margin-top:64px}
 section:last-of-type{border-bottom:0}
-.shead{margin-bottom:18px}
+.shead{margin-bottom:18px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
 .snum{
-  display:block; width:max-content; margin:0 0 9px;
-  font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.09em;
+  flex:none; margin:0;
+  font-family:var(--mono); font-size:20.8px; font-weight:500; letter-spacing:.09em;
   color:var(--deep); background:var(--accent-soft); padding:3px 11px; border-radius:999px;
 }
-.shead h2{font-size:clamp(1.214rem,2.34vw,1.495rem); font-weight:600; letter-spacing:-.006em; line-height:1.34}
-.lede{font-size:13.6px; color:var(--body)}
+.shead h2{font-size:20.8px; font-weight:600; letter-spacing:-.006em; line-height:1.34}
+ul.lede{margin:0 0 .9em; padding-left:1.25em}
+ul.lede li{margin:.35em 0}
+.lede{font-size:20.8px; color:var(--body)}
 
 /* three questions */
 .qs{display:grid; grid-template-columns:repeat(auto-fit,minmax(246px,1fr)); gap:15px; margin-top:22px}
 .q{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:19px 17px; box-shadow:var(--shadow)}
 .q .qn{
   display:inline-grid; place-items:center; width:24px; height:24px; border-radius:50%;
-  background:var(--accent); color:var(--on-accent); font-family:var(--mono); font-size:10.5px; font-weight:500;
+  background:var(--accent); color:var(--on-accent); font-family:var(--mono); font-size:20.8px; font-weight:500;
 }
-.q h3{font-size:14px; font-weight:600; margin:10px 0 7px; line-height:1.5; color:var(--deep)}
-.q p{font-size:12.2px; color:var(--muted); margin:0; line-height:1.82}
-.q .span{display:inline-block; margin-top:10px; font-size:10.8px; font-weight:600; color:var(--deep); background:var(--accent-soft); padding:3px 9px; border-radius:3px}
+.q h3{font-size:20.8px; font-weight:600; margin:10px 0 7px; line-height:1.5; color:var(--deep)}
+.q p{font-size:20.8px; color:var(--muted); margin:0; line-height:1.82}
+.q .span{display:inline-block; margin-top:10px; font-size:20.8px; font-weight:600; color:var(--deep); background:var(--accent-soft); padding:3px 9px; border-radius:3px}
 
 /* prep list */
 .steps{counter-reset:s; list-style:none; padding:0; margin:20px 0 0}
-.steps li{counter-increment:s; position:relative; padding:11px 0 11px 34px; border-top:1px solid var(--rule-soft); font-size:12.6px}
+.steps li{counter-increment:s; position:relative; padding:11px 0 11px 34px; border-top:1px solid var(--rule-soft); font-size:20.8px}
 .steps li:last-child{border-bottom:1px solid var(--rule-soft)}
 .steps li::before{
   content:counter(s); position:absolute; left:0; top:15px;
-  font-family:var(--mono); font-size:10.5px; font-weight:500; color:var(--on-accent);
+  font-family:var(--mono); font-size:20.8px; font-weight:500; color:var(--on-accent);
   background:var(--accent); width:20px; height:20px; border-radius:50%;
   display:grid; place-items:center;
 }
 .steps strong{color:var(--deep); font-weight:600}
 
 /* lectures */
-.lectures{margin-top:22px; border-top:2px solid var(--deep)}
-.lec{display:grid; grid-template-columns:50px minmax(0,1fr) 124px; gap:0 18px; padding:16px 0; border-bottom:1px solid var(--rule-soft); align-items:start}
+.lectures{margin-top:22px; border-top:0}
+.lec{display:grid; grid-template-columns:62px 182px minmax(0,1fr) 250px; gap:0 18px; padding:16px 0; border-bottom:1px solid var(--rule-soft); align-items:start}
 .lec:hover{background:var(--sunk)}
-.lec .id{font-family:var(--mono); font-size:11px; font-weight:500; color:var(--accent); padding-top:3px}
-.lec h3{font-size:14px; font-weight:600; color:var(--deep); line-height:1.52; margin-bottom:4px}
-.lec p{font-size:12.3px; color:var(--body); margin:0; line-height:1.85}
-.lec .read{font-family:var(--mono); font-size:10.5px; color:var(--muted); padding-top:4px; line-height:1.85}
+.lec .date{font-family:var(--mono); font-size:20.8px; color:var(--deep); padding-top:3px; white-space:nowrap}
+.lec.off{background:var(--sunk)}
+.lec.off .date, .lec.off .id{color:var(--muted)}
+.lec.off .hol{font-size:20.8px; color:var(--muted); font-style:italic}
+.lec .id{font-family:var(--mono); font-size:20.8px; font-weight:500; color:var(--accent); padding-top:3px}
+.lec h3{font-size:20.8px; font-weight:600; color:var(--deep); line-height:1.52; margin-bottom:4px}
+.lec p{font-size:20.8px; color:var(--body); margin:0; line-height:1.85}
+.lec .read{font-family:var(--mono); font-size:20.8px; color:var(--muted); padding-top:4px; line-height:1.85}
 .part{
   display:flex; align-items:center; gap:11px; margin:26px 0 0;
-  font-size:11px; font-weight:600; letter-spacing:.05em; color:var(--deep);
+  font-size:20.8px; font-weight:600; letter-spacing:.05em; color:var(--deep);
 }
 .part::after{content:""; flex:1; height:1px; background:var(--rule)}
 
 /* tables */
 .tablewrap{overflow-x:auto; margin-top:22px; border:1px solid var(--rule); border-radius:5px; background:var(--surface)}
-table{border-collapse:collapse; width:100%; min-width:580px; font-size:12.2px}
+table{border-collapse:collapse; width:100%; min-width:580px; font-size:20.8px}
 th,td{text-align:left; padding:9px 13px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
 thead th{
-  font-size:10.5px; letter-spacing:.04em; color:var(--on-accent); font-weight:600;
+  font-size:20.8px; letter-spacing:.04em; color:var(--on-accent); font-weight:600;
   background:var(--accent); border-bottom:0; position:sticky; top:0;
 }
 tbody tr:nth-child(even){background:var(--sunk)}
 tbody tr:hover{background:var(--accent-soft)}
 tbody tr:last-child td{border-bottom:0}
-td.w{font-family:var(--mono); font-size:11px; font-weight:500; color:var(--accent); white-space:nowrap}
-td.d{font-family:var(--mono); font-size:11px; color:var(--muted); white-space:nowrap}
+td.w{font-family:var(--mono); font-size:20.8px; font-weight:500; color:var(--accent); white-space:nowrap}
+td.d{font-family:var(--mono); font-size:20.8px; color:var(--muted); white-space:nowrap}
 
 /* assessment */
 .grades{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:15px; margin-top:22px}
 .grade{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:20px 17px; box-shadow:var(--shadow)}
-.grade .pct{font-size:2.268rem; line-height:1; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
-.grade h3{font-size:12.9px; font-weight:600; color:var(--deep); margin:10px 0 6px}
-.grade p{font-size:12.2px; color:var(--muted); margin:0; line-height:1.82}
+.grade .pct{font-size:20.8px; line-height:1; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.grade h3{font-size:20.8px; font-weight:600; color:var(--deep); margin:10px 0 6px}
+.warn{color:#C0261F; font-weight:600; display:block; margin-top:.55em}
+.hl{color:#426EFF; font-weight:600}
+:root[data-theme="dark"] .hl{color:#8AA5FF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hl{color:#8AA5FF}}
+.grade p{font-size:20.8px; color:var(--muted); margin:0; line-height:1.82}
 
 /* references */
 .refs{margin-top:18px}
 .refs h3{
-  font-size:11.3px; font-weight:600; letter-spacing:.04em; color:var(--deep);
+  font-size:20.8px; font-weight:600; letter-spacing:.04em; color:var(--deep);
   margin:24px 0 9px; padding-bottom:6px; border-bottom:1px solid var(--rule);
 }
 .refs ul{margin:0; padding-left:19px; list-style:disc}
-.refs li{margin:7px 0; font-size:12.5px; color:var(--body); line-height:1.85}
+.refs li{margin:7px 0; font-size:20.8px; color:var(--body); line-height:1.85}
 .refs li::marker{color:var(--accent-line)}
-.refs .note{color:var(--muted); font-size:12px}
+.refs .note{color:var(--muted); font-size:20.8px}
 
 /* downloads */
 .files{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin-top:20px}
@@ -260,37 +278,282 @@ td.d{font-family:var(--mono); font-size:11px; color:var(--muted); white-space:no
   padding:16px; background:var(--surface); border:1px solid var(--rule);
   border-radius:5px; box-shadow:var(--shadow);
 }
-.file .ext{font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.05em; color:var(--deep); background:var(--accent-soft); padding:3px 7px; border-radius:3px; margin-top:3px}
-.file b{display:block; color:var(--deep); font-weight:600; font-size:12.6px; margin-bottom:1px}
-.file span{font-size:11.8px; color:var(--muted)}
+.file .ext{font-family:var(--mono); font-size:20.8px; font-weight:500; letter-spacing:.05em; color:var(--deep); background:var(--accent-soft); padding:3px 7px; border-radius:3px; margin-top:3px}
+.file b{display:block; color:var(--deep); font-weight:600; font-size:20.8px; margin-bottom:1px}
+.file span{font-size:20.8px; color:var(--muted)}
 
 /* footer */
-footer{padding:32px 0 48px; color:var(--faint); font-size:11.3px; border-top:1px solid var(--rule)}
+footer{padding:32px 0 48px; color:var(--faint); font-size:20.8px; border-top:0}
 footer p{margin:0 0 5px}
 
 @media (max-width:760px){
-  body{font-size:12.6px}
-  .frame{padding:0 18px}
-  .bar-in{padding:0 18px; gap:12px; height:46px}
-  .brand{font-size:12.6px}
+  body{font-size:20.8px}
+  .frame{padding:0 12px}
+  .bar-in{padding:0 12px; gap:12px; height:46px}
+  .brand{font-size:20.8px}
   section{padding:36px 0}
   .hero{padding:34px 0 22px}
-  .lec{grid-template-columns:44px minmax(0,1fr); gap:0 12px}
+  .lec{grid-template-columns:52px minmax(0,1fr); gap:0 12px}
+  .lec .date{grid-column:2; padding-top:0}
   .lec .read{grid-column:2; padding-top:8px}
   .meta{gap:9px 20px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none !important; transition:none !important}}
 </style>
+<style>
+/* cool-layer ─ 视觉增强层（不改动任何文字） */
+
+/* 阅读进度条 */
+#prog{position:fixed; top:0; left:0; height:3px; width:0; z-index:60; pointer-events:none;
+  background:linear-gradient(90deg,var(--accent),var(--rule));
+  box-shadow:0 0 12px color-mix(in srgb,var(--accent) 55%,transparent);}
+
+/* hero：极淡的星野 + 缓慢流动的紫色辉光 */
+.hero{position:relative; overflow:hidden; isolation:isolate}
+:root[data-lang="en"] .hero::before{content:""; position:absolute; left:-12%; right:-12%; top:-90px; height:560px; z-index:-2;
+  background:
+    radial-gradient(46% 46% at 50% 38%, color-mix(in srgb,var(--accent) 20%,transparent), transparent 70%),
+    radial-gradient(34% 40% at 13% 30%, color-mix(in srgb,var(--rule) 26%,transparent), transparent 72%),
+    radial-gradient(32% 38% at 87% 24%, color-mix(in srgb,var(--accent-line) 30%,transparent), transparent 72%);
+  filter:blur(4px); animation:pf-drift 26s ease-in-out infinite alternate;}
+:root[data-lang="en"] .hero::after{content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.8;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 18%, var(--accent-line) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 22% 62%, var(--rule) 50%, transparent 51%),
+    radial-gradient(1.6px 1.6px at 35% 12%, var(--accent-line) 50%, transparent 51%),
+    radial-gradient(1.1px 1.1px at 47% 78%, var(--rule) 50%, transparent 51%),
+    radial-gradient(1.7px 1.7px at 61% 26%, var(--accent-line) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 73% 8%,  var(--rule) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 84% 47%, var(--accent-line) 50%, transparent 51%),
+    radial-gradient(1.1px 1.1px at 93% 22%, var(--rule) 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 15% 88%, var(--accent-line) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 67% 92%, var(--rule) 50%, transparent 51%);
+  animation:pf-twinkle 7s ease-in-out infinite alternate;}
+@keyframes pf-drift{to{transform:translate3d(0,-22px,0) scale(1.06)}}
+@keyframes pf-twinkle{to{opacity:.3}}
+
+/* 标题渐变 */
+.hero h1{
+  background:linear-gradient(100deg,var(--deep) 8%,var(--accent) 52%,var(--deep) 94%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;}
+.eyebrow{transition:letter-spacing .4s}
+.hero:hover .eyebrow{letter-spacing:.085em}
+.meta div{transition:transform .25s}
+.meta div:hover{transform:translateY(-2px)}
+
+/* 动画舞台：柔和外辉光 */
+.stage{border-radius:10px;
+  box-shadow:0 12px 44px color-mix(in srgb,var(--accent) 15%,transparent);
+  transition:box-shadow .35s, transform .35s;}
+.stage:hover{box-shadow:0 16px 58px color-mix(in srgb,var(--accent) 24%,transparent)}
+.tl input[type=range]::-webkit-slider-thumb{box-shadow:0 0 0 1px var(--accent), 0 0 12px color-mix(in srgb,var(--accent) 65%,transparent)}
+.tlbtn{transition:transform .2s, border-color .2s, color .2s}
+.tlbtn:hover{transform:scale(1.12)}
+
+/* 章节标题：编号胶囊做成渐变，标题下方细线滑出 */
+.snum{
+  background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 45%,var(--rule)));
+  color:var(--on-accent);
+  box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 32%,transparent);}
+.shead{position:relative; padding-bottom:10px}
+.shead::after{content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+  background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--rule) 70%,transparent),transparent);
+  transition:width 1.1s cubic-bezier(.2,.7,.2,1);}
+.shead.in::after{width:100%}
+
+/* 课表行：左侧竖线滑出 + 轻微位移 */
+.lec{position:relative; transition:background .25s, transform .25s}
+.lec::before{content:""; position:absolute; left:-14px; top:7px; bottom:7px; width:2px; border-radius:2px;
+  background:linear-gradient(var(--accent),var(--accent-line));
+  transform:scaleY(0); transform-origin:top; transition:transform .32s cubic-bezier(.2,.7,.2,1);}
+.lec:hover::before{transform:scaleY(1)}
+.lec:hover{transform:translateX(4px)}
+.lec .id{transition:color .25s, text-shadow .25s}
+.lec:hover .id{text-shadow:0 0 14px color-mix(in srgb,var(--accent) 55%,transparent)}
+.lec h3{transition:color .25s}
+.lec.off:hover{transform:none}
+.lec.off::before{background:linear-gradient(var(--faint),transparent)}
+
+/* 考核卡片 */
+.grade{position:relative; overflow:hidden; transition:transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s, border-color .28s}
+.grade::before{content:""; position:absolute; left:0; right:0; top:0; height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-line),transparent);}
+.grade:hover{transform:translateY(-5px); border-color:var(--accent-line);
+  box-shadow:0 14px 34px color-mix(in srgb,var(--accent) 18%,transparent);}
+.grade .pct{
+  background:linear-gradient(135deg,var(--accent),var(--deep));
+  -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent;}
+
+/* 教材封面：轻微 3D */
+.book{perspective:1000px}
+.bookart{transition:transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s}
+.bookart:hover{transform:rotateY(-13deg) rotateX(5deg) translateY(-5px) scale(1.03);
+  box-shadow:18px 20px 44px color-mix(in srgb,var(--accent) 28%,transparent);}
+
+/* 参考文献：下划线扫过 */
+.refs li a{border-bottom-color:transparent;
+  background-image:linear-gradient(var(--accent),var(--accent));
+  background-size:0% 1.5px; background-repeat:no-repeat; background-position:0 100%;
+  transition:background-size .32s cubic-bezier(.2,.7,.2,1), color .2s;}
+.refs li a:hover{background-size:100% 1.5px}
+.refs li{transition:transform .25s}
+.refs li:hover{transform:translateX(3px)}
+
+/* 入场揭示 */
+.pf-rv{opacity:0; transform:translateY(16px); transition:opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1)}
+.pf-rv.in{opacity:1; transform:none}
+
+/* 回到顶部 */
+#totop{position:fixed; right:20px; bottom:20px; width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center; z-index:55; cursor:pointer;
+  border:1px solid var(--rule); color:var(--deep); font-family:var(--mono); font-size:18px; line-height:1;
+  background:color-mix(in srgb,var(--surface) 86%,transparent); backdrop-filter:saturate(1.4) blur(8px);
+  opacity:0; pointer-events:none; transform:translateY(12px);
+  transition:opacity .3s, transform .3s, box-shadow .3s, border-color .3s;}
+#totop.on{opacity:1; pointer-events:auto; transform:none}
+#totop:hover{border-color:var(--accent); color:var(--accent);
+  box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 26%,transparent);}
+
+/* 语言按钮 */
+.switch button{transition:transform .2s, background .2s, color .2s, border-color .2s}
+.switch button:hover{transform:translateY(-1px)}
+.switch button[aria-pressed="true"]{box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 32%,transparent)}
+
+@media (prefers-reduced-motion:reduce){
+  .pf-rv{opacity:1 !important; transform:none !important}
+  .shead::after{width:100% !important}
+}
+
+/* 英文页面：顶部（导航 + 标题 + 动画）走深色星空band，正文保持白底 */
+:root[data-lang="en"] .bar,
+:root[data-lang="en"] .hero{
+  --paper:#0D0D11; --surface:#16161A; --sunk:#1C1C22;
+  --ink:#F2F2F5; --body:#DCDCE1; --muted:#A2A2AB; --faint:#7C7C86;
+  --deep:#CBB4FF; --on-accent:#0D0D11;
+  --rule:#5B4A8C; --rule-soft:#2B2B33;
+  --accent:#A98BEE; --accent-ink:#CBB4FF; --accent-soft:#231B3C; --accent-line:#4E3F7D;
+  --warm:#E0A163; --warm-soft:#31220F;
+  color:var(--body);
+}
+:root[data-lang="en"] .bar{
+  background:color-mix(in srgb,#0D0D11 92%,transparent);
+  border-bottom-color:var(--rule);
+}
+:root[data-lang="en"] .hero{
+  background:
+    radial-gradient(70% 90% at 50% 0%, #17142B 0%, #0D0D11 62%),
+    #0D0D11;
+  border-bottom-color:var(--rule);
+}
+:root[data-lang="en"] .hero::after{opacity:.95}
+:root[data-lang="en"] .hero h1{
+  background:linear-gradient(100deg,#CBB4FF 6%,#A98BEE 50%,#E4D8FF 96%);
+  -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent;}
+:root[data-lang="en"] .brand{color:var(--deep)}
+:root[data-lang="en"] .bar nav a{color:var(--muted)}
+:root[data-lang="en"] .bar nav a:hover,
+:root[data-lang="en"] .bar nav a.active{color:var(--ink)}
+:root[data-lang="en"] .switch button{color:var(--muted); border-color:var(--rule)}
+:root[data-lang="en"] .switch button[aria-pressed="true"]{background:var(--accent); color:#0D0D11; border-color:var(--accent)}
+:root[data-lang="en"] .stage{border-color:var(--rule-soft); background:var(--surface);
+  box-shadow:0 16px 54px rgba(0,0,0,.55)}
+:root[data-lang="en"] .meta{border-top-color:var(--rule-soft)}
+:root[data-lang="en"] .hero a{color:var(--deep); border-bottom-color:var(--accent-line)}
+</style>
+<style>
+/* cool-layer-2 ─ 更强的视觉层（仍不改动任何文字） */
+
+/* 标题缓慢流光 */
+.hero h1{background-size:240% 100%; animation:pf-shimmer 11s linear infinite}
+@keyframes pf-shimmer{0%{background-position:0% 0}100%{background-position:240% 0}}
+
+/* 流星：偶尔划过 hero 星野 */
+.pf-meteor{
+  position:absolute; z-index:-1; height:1.5px; width:190px; pointer-events:none;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb,var(--accent) 85%,transparent));
+  border-radius:2px; opacity:0; transform:rotate(19deg);
+  filter:drop-shadow(0 0 6px color-mix(in srgb,var(--accent) 60%,transparent));
+  animation:pf-meteor 1.5s cubic-bezier(.35,.1,.55,1) forwards;
+}
+@keyframes pf-meteor{
+  0%{opacity:0; transform:translate3d(0,0,0) rotate(19deg) scaleX(.2)}
+  12%{opacity:.95}
+  75%{opacity:.75}
+  100%{opacity:0; transform:translate3d(420px,145px,0) rotate(19deg) scaleX(1)}
+}
+
+/* hero 随滚动轻微视差 */
+.hero .eyebrow,.hero h1,.hero .meta{will-change:transform}
+
+/* 章节编号弹入 */
+.shead.in .snum{animation:pf-pop .55s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes pf-pop{0%{transform:scale(.6); opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1); opacity:1}}
+
+/* 考核卡片：掠光 */
+.grade{isolation:isolate}
+.grade::after{
+  content:""; position:absolute; inset:-40% -60%; z-index:0; pointer-events:none;
+  background:linear-gradient(105deg, transparent 38%, color-mix(in srgb,var(--accent) 16%,transparent) 50%, transparent 62%);
+  transform:translateX(-120%); transition:transform .85s cubic-bezier(.2,.7,.2,1);
+}
+.grade:hover::after{transform:translateX(120%)}
+.grade>*{position:relative; z-index:1}
+
+/* 进度条前端光点 */
+#prog::after{
+  content:""; position:absolute; right:-2px; top:50%; width:8px; height:8px; margin-top:-4px;
+  border-radius:50%; background:var(--accent);
+  box-shadow:0 0 12px 3px color-mix(in srgb,var(--accent) 70%,transparent);
+}
+
+/* 动画舞台：暗角 + 悬停微抬 */
+.stage::after{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:3; border-radius:inherit;
+  box-shadow:inset 0 0 90px color-mix(in srgb,var(--accent) 10%,transparent);
+}
+.stage:hover{transform:translateY(-3px)}
+
+/* 课表编号在悬停时变成胶囊 */
+.lec .id{display:inline-block; padding:0 0; border-radius:999px; transition:all .28s cubic-bezier(.2,.7,.2,1)}
+.lec:hover .id{background:var(--accent); color:var(--on-accent); padding:0 8px; text-shadow:none}
+.lec.off:hover .id{background:transparent; color:var(--muted); padding:0}
+
+/* 滚动条 */
+html{scrollbar-width:thin; scrollbar-color:var(--accent-line) transparent}
+::-webkit-scrollbar{width:11px; height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--accent-line); border:3px solid var(--paper); border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* 回到顶部：脉冲光环 */
+#totop::after{
+  content:""; position:absolute; inset:-1px; border-radius:50%; pointer-events:none;
+  border:1px solid color-mix(in srgb,var(--accent) 45%,transparent); opacity:0;
+}
+#totop.on::after{animation:pf-ring 2.8s ease-out infinite}
+@keyframes pf-ring{0%{opacity:.8; transform:scale(1)}70%{opacity:0; transform:scale(1.45)}100%{opacity:0}}
+
+/* 选中文字 */
+::selection{background:color-mix(in srgb,var(--accent) 28%,transparent); color:inherit}
+
+@media (prefers-reduced-motion:reduce){
+  .pf-meteor{display:none}
+  .hero h1{animation:none}
+}
+</style>
+
+
 
 
 <div class="bar">
   <div class="bar-in">
     <span class="brand"><span class="zh">行星形成</span><span class="en">Planet Formation</span></span>
     <nav>
-      <a href="#intro"><span class="zh">课程简介</span><span class="en">Overview</span></a>
-      <a href="#lectures"><span class="zh">大纲</span><span class="en">Syllabus</span></a>
-      <a href="#assessment"><span class="zh">考核方式</span><span class="en">Assessment</span></a>
-      <a href="#refs"><span class="zh">参考文献</span><span class="en">References</span></a>
+      <a href="#intro"><span class="zh">课程简介</span><span class="en">Textbook</span></a>
+      <a href="#lectures"><span class="zh">大纲</span><span class="en">Lecture</span></a>
+      <a href="#assessment"><span class="zh">考核方式</span><span class="en">Grading</span></a>
+      <a href="#refs"><span class="zh">参考文献</span><span class="en">Reading</span></a>
     </nav>
     <div class="switch">
       <button id="zhBtn" type="button" aria-pressed="true">中文</button>
@@ -301,17 +564,17 @@ footer p{margin:0 0 5px}
 
 <header class="hero">
   <div class="frame">
-    <div class="eyebrow"><span class="zh">南京大学 · 深空探测科学与技术研究院 · 国际化课程</span><span class="en">Nanjing University · School of Astronomy and Space Science · Graduate course</span></div>
+    <div class="eyebrow"><span class="zh">南京大学 · 深空探测科学与技术研究院 · 国际化课程</span><span class="en">Nanjing University</span></div>
     <h1><span class="zh">行星形成 Planet Formation</span><span class="en">Planet Formation</span></h1>
 
 
     <dl class="meta">
-      <div><dt><span class="zh">任课教师</span><span class="en">Instructor</span></dt><dd>崔灿</dd></div>
+      <div><dt><span class="zh">任课教师</span><span class="en">Professor</span></dt><dd><span class="zh">崔灿</span><span class="en">Can Cui</span></dd></div>
       <div><dt><span class="zh">邮箱</span><span class="en">Email</span></dt><dd><a href="mailto:ccui@nju.edu.cn">ccui@nju.edu.cn</a></dd></div>
       <div><dt><span class="zh">学期</span><span class="en">Term</span></dt><dd><span class="zh">2026秋季</span><span class="en">Fall 2026</span></dd></div>
-      <div><dt><span class="zh">上课时间</span><span class="en">Time</span></dt><dd><span class="zh">周四 10:10–12:00</span><span class="en">Thursdays 10:00–12:00</span></dd></div>
-      <div><dt><span class="zh">教室</span><span class="en">Room</span></dt><dd><span class="zh">南雍-东112<span class="zh"> </span><span class="en">TBA</span></span></dd></div>
-      <div><dt><span class="zh">学分</span><span class="en">Hours / credits</span></dt><dd><span class="zh">2</span><span class="en">2 credits</span></dd></div>
+      <div><dt><span class="zh">上课时间</span><span class="en">Time</span></dt><dd><span class="zh">周四 10:10–12:00</span><span class="en">Thursdays 10:10–12:00</span></dd></div>
+      <div><dt><span class="zh">教室</span><span class="en">Location</span></dt><dd><span class="zh">南雍-东 112</span><span class="en">Nanyong East 112</span></dd></div>
+      <div><dt><span class="zh">学分</span><span class="en">Credits</span></dt><dd>2</dd></div>
     </dl>
 
     <div class="diskwrap">
@@ -333,21 +596,24 @@ footer p{margin:0 0 5px}
 
 <!-- ───────────────────────── 1 · overview ───────────────────────── -->
 <section id="intro">
-  <div class="shead"><span class="snum mono">01</span><h2><span class="zh">课程简介</span><span class="en">Course overview</span></h2></div>
+  <div class="shead"><span class="snum mono">01</span><h2><span class="zh">课程简介</span><span class="en">Overview and Textbooks</span></h2></div>
   <div class="prose">
-    <p class="lede zh">
-<li>已发现的系外行星已有6000余颗（<a href="https://exoplanetarchive.ipac.caltech.edu/" target="_blank" rel="noopener">NASA Exoplanet Archive</a>）。</li>
-  <li>因此，行星形成是一门被观测推着走的理论。</li>
-  <li>过去十五年里，ALMA、JWST 和凌星巡天把这门学科从少数几个约束条件，推到了必须对上千个系统负责的地步。</li>
-  <li>本课程按照物理过程组织：先建立盘的结构与演化，再处理固体的输运与聚集，最后才谈行星本身的生长、迁移与系统结构。</li>
-
-  
-  <br><p class="lede en">Planet formation is a theory course driven by observation. In the last fifteen years ALMA, JWST and the transit surveys have taken the subject from a handful of constraints to a field answerable to thousands of systems. The course is organised by physical process rather than by phenomenon: first the structure and evolution of the gas disk, then the transport and concentration of solids, and only then the growth, migration and final architecture of the planets themselves.</p>
+    <ul class="lede zh">
+      <li>已发现的系外行星有6000余颗（<a href="https://exoplanetarchive.ipac.caltech.edu/" target="_blank" rel="noopener">NASA Exoplanet Archive</a>）。</li>
+      <li>行星形成是一门被观测推动的理论。</li>
+      <li>过去十五年里，ALMA、JWST 和凌星巡天（KEPLER, K2, TESS等）把这门学科推到了必须对上千个系统负责的地步。</li>
+      <li>本课程按照物理过程组织：（1）建立盘的结构与演化，（2）再处理固体的输运与聚集，（3）最后才谈行星本身的生长、迁移与系统结构。</li>
+    </ul>
+    <ul class="lede en">
+      <li>We now know of more than 6,000 exoplanets (<a href="https://exoplanetarchive.ipac.caltech.edu/" target="_blank" rel="noopener">NASA Exoplanet Archive</a>), transforming planet formation from a largely theoretical subject into one that can be tested against a vast and rapidly growing observational data set.</li>
+      <li>Over the past fifteen years, facilities and surveys such as ALMA, JWST, Kepler, K2, and TESS have dramatically expanded the empirical basis of the field. Instead of explaining only the Solar System and a handful of known planetary systems, theories of planet formation must now account for the properties and architectures of thousands of exoplanetary systems.</li>
+      <li>This course follows the physical processes that connect protoplanetary disks to mature planetary systems. We begin with the structure and evolution of protoplanetary disks, then examine how solid particles grow, concentrate, and form planetesimals. We finally consider the growth of planetary cores and atmospheres, planet–disk interactions and migration, and the dynamical processes that shape the planetary architectures observed today.</li>
+    </ul>
 
 
     <figure class="book">
       <a class="bookart" id="a20art" href="https://www.cambridge.org/highereducation/books/astrophysics-of-planet-formation/71A7A5E2C4A6A0F9F1B5C7B1F9F5C0A1" target="_blank" rel="noopener">
-        <img id="a20cover" src="https://assets.cambridge.org/97811084/20501/large_cover/9781108420501i.jpg" alt="Astrophysics of Planet Formation, 2nd edition — Cambridge University Press" loading="lazy">
+        <img id="a20cover" src="data:image/jpeg;base64,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" alt="Astrophysics of Planet Formation, 2nd edition — Cambridge University Press" loading="lazy">
         <span class="bookfall">
           <span class="bp">COVER · ISBN 978-1-108-42050-1</span>
           <span class="bt"><span class="zh">封面图需联网加载</span><span class="en">cover loads from the publisher</span></span>
@@ -355,11 +621,11 @@ footer p{margin:0 0 5px}
         </span>
       </a>
       <figcaption class="bookmeta">
-        <div class="bl"><span class="zh"></span><span class="en">Principal text</span></div>
-        <p class="zh"><strong>教材 1：</strong>P. J. Armitage, <em>Astrophysics of Planet Formation</em>, 2nd ed., Cambridge University Press (2020)，以下记作 <span class="mono">A20</span>。该书为版权教材，<strong>免费下载？</strong></p>
-        <p class="zh"><strong>教材 2：</strong>P. J. Armitage, <em>Physical Processes in Protoplanetary Disks</em>, Saas-Fee Advanced Course 45，<a href="https://arxiv.org/abs/1509.06382">arXiv:1509.06382</a>，以下记作 <span class="mono">SF</span>，<strong>可免费下载</strong>。</p>
-        <p class="en"><strong>Principal text:</strong> P. J. Armitage, <em>Astrophysics of Planet Formation</em>, 2nd ed., Cambridge University Press (2020) — cited below as <span class="mono">A20</span>. It is in copyright and not free to download; read it through the library's Cambridge Core subscription or buy a copy.</p>
-        <p class="en"><strong>Companion notes:</strong> P. J. Armitage, <em>Physical Processes in Protoplanetary Disks</em>, Saas-Fee Advanced Course 45, <a href="https://arxiv.org/abs/1509.06382">arXiv:1509.06382</a> — cited as <span class="mono">SF</span>, freely available and closely complementary.</p>
+
+        <p class="zh"><strong>教材 1：</strong>P. J. Armitage, <em>Astrophysics of Planet Formation</em>, 2nd ed., Cambridge University Press (2020)。该书为版权教材，<strong>免费下载？</strong></p>
+        <p class="zh"><strong>教材 2：</strong>P. J. Armitage, <em>Physical Processes in Protoplanetary Disks</em>，<a href="https://arxiv.org/abs/1509.06382">arXiv:1509.06382</a>，<strong>可免费下载</strong>。</p>
+        <p class="en"><strong>Textbook1:</strong> P. J. Armitage, <em>Astrophysics of Planet Formation</em>, 2nd ed., Cambridge University Press (2020). The book is under copyright and <strong>not available for free download</strong>; read it through the library's Cambridge Core subscription.</p>
+        <p class="en"><strong>Textbook2:</strong> P. J. Armitage, <em>Physical Processes in Protoplanetary Disks</em>, <a href="https://arxiv.org/abs/1509.06382">arXiv:1509.06382</a>.</p>
       </figcaption>
     </figure>
   </div>
@@ -367,181 +633,149 @@ footer p{margin:0 0 5px}
 
 <!-- ───────────────────────── 4 · lectures ───────────────────────── -->
 <section id="lectures">
-  <div class="shead"><span class="snum mono">02</span><h2><span class="zh">大纲</span><span class="en">Syllabus</span></h2></div>
+  <div class="shead"><span class="snum mono">02</span><h2><span class="zh">大纲</span><span class="en">Lectures</span></h2></div>
   <div class="prose">
   </div>
 
   <div class="lectures">
     <div class="lec">
       <div class="id">L01</div>
+      <div class="date">09/17<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">导论与观测背景</span><span class="en">Introduction and observational context</span></h3>
-        <p class="zh">课程安排。理论必须解释的两组数据：太阳系结构与陨石年代学，以及系外行星统计。YSO 分类与 α<sub>IR</sub>、吸积率、盘的寿命。尘埃连续谱与分子线诊断。第一批物理：竖直静力平衡、h = c<sub>s</sub>/Ω、亚开普勒转动、最小质量太阳星云、时标层级。</p>
-        <p class="en">Logistics. The two datasets a theory must explain: Solar System architecture with meteoritic chronology, and exoplanet demographics. YSO classification and α<sub>IR</sub>, accretion rates, disk lifetimes. Dust continuum and molecular-line diagnostics. First physics: vertical hydrostatic equilibrium, h = c<sub>s</sub>/Ω, sub-Keplerian rotation, the MMSN, the hierarchy of timescales.</p>
+        <h3><span class="zh">课程大纲与总览</span><span class="en">Course overview</span></h3>
+        <p class="zh">总览课程大纲，介绍课程内容、时间线、考核方式等。
+
+        <p class="en">An introduction to the scope and structure of the course: how the semester is organized, the key physical stages of planet formation.</p>
       </div>
-      <div class="read">A20 ch. 1–2<br>SF §1–2</div>
+      <div class="read"><span class="zh">课程主页</span><span class="en">course webpage</span></div>
     </div>
 
-    <div class="part"><span class="zh">Q1 · 气体盘的演化</span><span class="en">Q1 · Evolution of the gas disk</span></div>
+
 
     <div class="lec">
       <div class="id">L02</div>
+      <div class="date">09/24<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">盘的结构 I —— 竖直结构与温度</span><span class="en">Disk structure I — vertical and thermal</span></h3>
-        <p class="zh">静力平衡与高斯剖面；自引力与磁压带来的偏离。径向力平衡与竖直剪切。被动辐照盘：外张、Chiang–Goldreich 双层模型、过热表面层。粘滞加热盘。作为热力学地标的雪线。</p>
-        <p class="en">Hydrostatic equilibrium and the Gaussian profile; departures from it through self-gravity and magnetic pressure. Radial force balance and vertical shear. Passive irradiated disks: flaring, the Chiang–Goldreich two-layer model, superheated surface layers. Viscously heated disks. Ice lines as thermodynamic landmarks.</p>
+        <h3><span class="zh">原行星盘
+</span><span class="en">Protoplanetary disks</span></h3>
+        <p class="zh">盘的结构和演化，物理、化学过程。观测：ALMA，JWST。</p>
+        <p class="en">Disk structure and evolution. Vertical hydrostatic equilibrium, h = c<sub>s</sub>/Ω and the Gaussian profile; sub-Keplerian rotation. Passive irradiated disks: flaring, the Chiang–Goldreich two-layer model; viscously heated disks; ice lines as thermodynamic landmarks. Angular momentum transport and the accretion history of a disk. Disk chemistry. What ALMA and JWST actually measure, and what they do not.</p>
       </div>
-      <div class="read">A20 §2.2–2.4<br>SF §3.1–3.2</div>
+      <div class="read"><span class="zh">教材1</span><span class="en">Textbook1</span> §2–3<br><span class="zh">教材2</span><span class="en">Textbook2</span> §3–5</div>
+    </div>
+
+    <div class="lec off">
+      <div class="id">&mdash;</div>
+      <div class="date">10/01<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
+      <div>
+        <p class="hol"><span class="zh">国庆节放假。</span><span class="en">National Day holiday.</span></p>
+      </div>
+      <div class="read"></div>
     </div>
 
     <div class="lec">
       <div class="id">L03</div>
+      <div class="date">10/08<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">盘的结构 II —— 不透明度、电离与化学</span><span class="en">Disk structure II — opacity, ionization, chemistry</span></h3>
-        <p class="zh">尘埃与气体的不透明度。热电离；宇宙线、X 射线与放射性核素的非热电离。电离度与气体–磁场的耦合。盘化学概览：冻结、雪线、C/O 比，以及 ALMA 和 JWST 实际测到的是什么。</p>
-        <p class="en">Dust and gas opacities. Thermal ionization; non-thermal ionization by cosmic rays, X-rays and radionuclides. Ionization fraction and the coupling of gas to magnetic fields. Disk chemistry in outline: freeze-out, snow lines, C/O ratios, and what ALMA and JWST actually measure.</p>
+        <h3><span class="zh">尘埃动力学和演化</span><span class="en">Dust dynamics and evolution</span></h3>
+        <p class="zh">Epstein drag 与 Stokes 数，竖直沉降与扩散平衡，径向漂移，Nakagawa–Sekiya–Hayashi 平衡解。</p>
+        <p class="en">Drag regimes (Epstein, Stokes) and the Stokes number. Vertical settling against turbulent diffusion, and the settling–stirring equilibrium. Radial drift: the Weidenschilling problem and the drift barrier. The Nakagawa–Sekiya–Hayashi equilibrium solution. Particle pile-ups, and the observational signatures of drift and grain growth.</p>
       </div>
-      <div class="read">A20 §2.5<br>SF §3.3</div>
+      <div class="read"><span class="zh">教材1</span><span class="en">Textbook1</span> §4.1–4.2<br><span class="zh">教材2</span><span class="en">Textbook2</span> §7.1–7.2</div>
     </div>
 
     <div class="lec">
       <div class="id">L04</div>
+      <div class="date">10/15<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">盘的演化 I —— 经典粘滞盘</span><span class="en">Disk evolution I — the classical viscous disk</span></h3>
-        <p class="zh">把角动量输运写成有效粘滞。推导 Σ(r,t) 的扩散方程；格林函数解与自相似解；粘滞扩展与适用范围。α 参数化。边界条件：零力矩内边界、磁层截断、双星中的盘。粘滞加热与竖直温度结构。</p>
-        <p class="en">Angular momentum transport as an effective viscosity. Derivation of the diffusion equation for Σ(r,t); Green's-function and self-similar solutions; viscous spreading and the limits of validity. The α-prescription. Boundary conditions: the zero-torque inner boundary, magnetospheric truncation, disks in binaries. Viscous heating and the vertical temperature structure.</p>
+        <h3><span class="zh">星子的形成</span><span class="en">Planetesimal formation</span></h3>
+        <p class="zh">coagulation - fragmentation equilibrium，压强与尘埃陷阱，流不稳定性。引力坍缩与初始星子质量函数，与小行星带和柯伊伯带的比较。</p>
+        <p class="en">Collisional coagulation; the bouncing and fragmentation barriers. Pressure maxima and particle traps. The streaming instability: mechanism, linear criterion, numerical results. Gravitational collapse of pebble clouds and the initial planetesimal mass function; comparison with the asteroid and Kuiper belts.</p>
       </div>
-      <div class="read">A20 §3.1–3.2<br>SF §4.1–4.3</div>
+      <div class="read"><span class="zh">教材1</span><span class="en">Textbook1</span> §4.3–4.5<br><span class="zh">教材2</span><span class="en">Textbook2</span> §7.3, §8</div>
     </div>
+
 
     <div class="lec">
       <div class="id">L05</div>
+      <div class="date">10/22<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">盘的演化 II —— 输运的起源</span><span class="en">Disk evolution II — the origin of transport</span></h3>
-        <p class="zh">为什么分子粘滞不够。流体力学路线：线性稳定性、Rayleigh 判据、VSI / COS / SBI 与 zombie vortex。自引力、Toomre 判据、引力湍流与碎裂。磁转动不稳定性：局域分析、增长率与饱和。</p>
-        <p class="en">Why molecular viscosity fails. Hydrodynamic routes: linear stability, the Rayleigh criterion, VSI / COS / SBI and the zombie-vortex instability. Self-gravity, the Toomre criterion, gravito-turbulence and fragmentation. The magnetorotational instability: local analysis, growth rates, saturation.</p>
+        <h3><span class="zh">卵石吸积</span><span class="en">Pebble accretion</span></h3>
+        <p class="zh">气动耦合固体的吸积：Bondi 与 Hill 区、吸积率、卵石隔离质量。与星子吸积的比较。对木星形成与太阳系同位素二分性的意义。</p>
+        <p class="en">Accretion of aerodynamically coupled solids: the Bondi and Hill regimes, accretion rates, the pebble isolation mass. Comparison with planetesimal accretion. Global pebble flux and drift-limited core growth. Implications for the formation of Jupiter and for the Solar System's isotopic dichotomy.</p>
       </div>
-      <div class="read">A20 §3.3<br>SF §5.1–5.4</div>
+      <div class="read"><span class="zh">教材1</span><span class="en">Textbook1</span> §5</div>
     </div>
 
     <div class="lec">
       <div class="id">L06</div>
+      <div class="date">10/29<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">非理想 MHD、盘风与间歇吸积</span><span class="en">Non-ideal MHD, disk winds and episodic accretion</span></h3>
-        <p class="zh">欧姆、双极与 Hall 三个区域，以及各自在盘中的位置。死区及其后果。磁离心风与磁热风；磁场的输运。间歇吸积：FU Ori 与 EX Lup 爆发、S 曲线、热不稳定与死区不稳定。</p>
-        <p class="en">Ohmic, ambipolar and Hall regimes, and where each dominates in a protoplanetary disk. The dead zone and its consequences. Magnetocentrifugal and magnetothermal winds; magnetic-field transport. Episodic accretion: FU Ori and EX Lup outbursts, the S-curve, thermal and dead-zone instabilities.</p>
+        <h3><span class="zh">巨行星的形成</span><span class="en">Giant planet formation</span></h3>
+        <p class="zh">核吸积：临界核质量、Kelvin–Helmholtz 阶段与失控气体吸积。引力不稳定路线：冷却判据、碎裂半径。二者与观测到的巨行星族的对照。</p>
+        <p class="en">Core accretion: the structure of an accreting envelope, the critical core mass, the Kelvin–Helmholtz phase and runaway gas accretion. The gravitational-instability route: cooling criteria, fragmentation radii, and what GI can and cannot produce. Confronting both with the observed giant-planet population.</p>
       </div>
-      <div class="read">A20 §3.4<br>SF §5.4–5.5, §6</div>
+      <div class="read"><span class="zh">教材1</span><span class="en">Textbook1</span> §6.1–6.3</div>
     </div>
-
-    <div class="part"><span class="zh">Q2 · 固体的输运与聚集</span><span class="en">Q2 · Transport and concentration of solids</span></div>
 
     <div class="lec">
       <div class="id">L07</div>
+      <div class="date">11/05<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">固体的空气动力学</span><span class="en">Aerodynamics of solids</span></h3>
-        <p class="zh">曳力区（Epstein、Stokes）与 Stokes 数。竖直沉降与沉降–搅动平衡。径向漂移：Weidenschilling 问题与漂移壁垒。湍流扩散；Nakagawa–Sekiya–Hayashi 平衡解。颗粒堆积。漂移与颗粒生长的观测特征。</p>
-        <p class="en">Drag regimes (Epstein, Stokes) and the Stokes number. Vertical settling and the settling–stirring balance. Radial drift: the Weidenschilling problem and the drift barrier. Turbulent diffusion; the Nakagawa–Sekiya–Hayashi equilibrium. Particle pile-ups. Observational signatures of drift and of grain growth.</p>
+        <h3><span class="zh">行星–盘相互作用与迁移</span><span class="en">Planet–disk interaction and migration</span></h3>
+        <p class="zh">共振力矩：Lindblad 与共转。I 型迁移及其符号；饱和、热力矩与动力学力矩。开缝与 II 型迁移。III 型／失控迁移。偏心率与倾角的阻尼。共振俘获与共振链；用迁移解释热木星、共振超级地球系统与盘的子结构。</p>
+        <p class="en">Resonant torques: Lindblad and corotation. Type I migration; saturation, thermal and dynamical torques. Gap opening and Type II migration. Type III / runaway migration. Eccentricity and inclination damping. Resonant capture and chains; migration as an explanation for hot Jupiters, resonant super-Earth systems, and disk substructure.</p>
       </div>
-      <div class="read">A20 §4.1–4.2<br>SF §7.1–7.2</div>
+      <div class="read"><span class="zh">教材1</span><span class="en">Textbook1</span> §7.1–7.3<br><span class="zh">教材2</span><span class="en">Textbook2</span> §8</div>
     </div>
 
     <div class="lec">
       <div class="id">L08</div>
+      <div class="date">11/12<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">星子的形成</span><span class="en">Planetesimal formation</span></h3>
-        <p class="zh">碰撞凝聚；弹跳与碎裂壁垒。压强极大与粒子陷阱；纬向流、涡旋与 Rossby 波不稳定性。流动不稳定性：物理机制、线性判据与数值结果。卵石云的引力坍缩与初始星子质量函数；与小行星带和柯伊伯带的比较。</p>
-        <p class="en">Collisional coagulation; the bouncing and fragmentation barriers. Pressure maxima and particle traps; zonal flows, vortices and the Rossby-wave instability. The streaming instability: mechanism, linear criterion, numerical results. Gravitational collapse of pebble clouds and the initial planetesimal mass function; comparison with the asteroid and Kuiper belts.</p>
+        <h3><span class="zh">盘的耗散与成熟行星系统</span><span class="en">Disk dispersal and mature planetary systems</span></h3>
+        <p class="zh">盘的耗散：光致蒸发（EUV/FUV/X 射线）与 MHD 风。动力学不稳定、高偏心迁移、潮汐。大气逃逸，碎屑盘与小行星带。</p>
+        <p class="en">Disk dispersal: photoevaporation (EUV/FUV/X-ray) and MHD winds; two-timescale evolution and transition disks. What happens once the gas is gone: dynamical instability, high-eccentricity migration, tides. Atmospheric mass loss and the radius valley. Debris disks and the asteroid belt as fossil records.</p>
       </div>
-      <div class="read">A20 §4.3–4.5<br>SF §7.3, §8</div>
-    </div>
-
-    <div class="part"><span class="zh">Q3 · 从星子到行星系统</span><span class="en">Q3 · From planetesimals to planetary systems</span></div>
-
-    <div class="lec">
-      <div class="id">L09</div>
-      <div>
-        <h3><span class="zh">从星子到原行星</span><span class="en">From planetesimals to protoplanets</span></h3>
-        <p class="zh">引力聚焦与带弥散的二体问题。失控生长与寡头生长。粘滞搅动与动力学摩擦。孤立质量。N 体方法及其局限。晚期阶段：巨撞击、月球形成事件，以及 Hf–W 定年给出的时标。</p>
-        <p class="en">Gravitational focusing and the two-body problem with velocity dispersion. Runaway and oligarchic growth. Viscous stirring and dynamical friction. The isolation mass. N-body methods and their limitations. The late stage: giant impacts, the Moon-forming event, and the timescale from Hf–W chronometry.</p>
-      </div>
-      <div class="read">A20 §5.1–5.3</div>
-    </div>
-
-    <div class="lec">
-      <div class="id">L10</div>
-      <div>
-        <h3><span class="zh">卵石吸积</span><span class="en">Pebble accretion</span></h3>
-        <p class="zh">气动耦合固体的吸积：Bondi 与 Hill 区、吸积率、卵石隔离质量。与星子吸积的比较。全局卵石流与受漂移限制的核生长。对木星形成与太阳系同位素二分性的意义。</p>
-        <p class="en">Accretion of aerodynamically coupled solids: the Bondi and Hill regimes, accretion rates, the pebble isolation mass. Comparison with planetesimal accretion. Global pebble flux and drift-limited core growth. Implications for the formation of Jupiter and for the Solar System's isotopic dichotomy.</p>
-      </div>
-      <div class="read">A20 §5.4<br><span class="zh">近期文献</span><span class="en">current literature</span></div>
-    </div>
-
-    <div class="lec">
-      <div class="id">L11</div>
-      <div>
-        <h3><span class="zh">巨行星的形成</span><span class="en">Giant planet formation</span></h3>
-        <p class="zh">核吸积：吸积包层的结构、临界核质量、Kelvin–Helmholtz 阶段与失控气体吸积。时标困难及其解决方案。引力不稳定路线：冷却判据、碎裂半径，以及它能与不能产生什么。二者与观测到的巨行星族的对照。</p>
-        <p class="en">Core accretion: the structure of an accreting envelope, the critical core mass, the Kelvin–Helmholtz phase and runaway gas accretion. Timescale problems and proposed solutions. The gravitational-instability route: cooling criteria, fragmentation radii, and what GI can and cannot produce. Confronting both with the observed giant-planet population.</p>
-      </div>
-      <div class="read">A20 §6.1–6.3</div>
-    </div>
-
-    <div class="lec">
-      <div class="id">L12</div>
-      <div>
-        <h3><span class="zh">行星–盘相互作用与迁移</span><span class="en">Planet–disk interaction and migration</span></h3>
-        <p class="zh">共振力矩：Lindblad 与共转。I 型迁移及其符号；饱和、热力矩与动力学力矩。开缝与 II 型迁移。III 型／失控迁移。偏心率与倾角的阻尼。共振俘获与共振链；用迁移解释热木星、共振超级地球系统与盘的子结构。</p>
-        <p class="en">Resonant torques: Lindblad and corotation. Type I migration and its sign; saturation, thermal and dynamical torques. Gap opening and Type II migration. Type III / runaway migration. Eccentricity and inclination damping. Resonant capture and chains; migration as an explanation for hot Jupiters, resonant super-Earth systems, and disk substructure.</p>
-      </div>
-      <div class="read">A20 §7.1–7.3<br>SF §8</div>
-    </div>
-
-    <div class="lec">
-      <div class="id">L13</div>
-      <div>
-        <h3><span class="zh">系统结构、盘的消散与综合</span><span class="en">System architectures, dispersal and synthesis</span></h3>
-        <p class="zh">盘的消散：光致蒸发（EUV/FUV/X 射线）与 MHD 风；双时标演化与过渡盘。盘后演化：动力学不稳定、高偏心迁移、潮汐。大气逃逸与半径谷。碎屑盘。族群合成：现有模型能重现什么，又在哪里失败。开放问题与未来十年的数据。</p>
-        <p class="en">Disk dispersal: photoevaporation (EUV/FUV/X-ray) and MHD winds; two-timescale evolution and transition disks. Post-disk evolution: dynamical instability, high-eccentricity migration, tides. Atmospheric mass loss and the radius valley. Debris disks. Population synthesis: what current models reproduce and where they fail. Open problems and the next decade of data.</p>
-      </div>
-      <div class="read">A20 §7.4, ch. 8<br>SF §9</div>
+      <div class="read"><span class="zh">教材1</span><span class="en">Textbook1</span> §7.4, §8<br><span class="zh">教材2</span><span class="en">Textbook2</span> §9</div>
     </div>
   </div>
 </section>
 
 <!-- ───────────────────────── 6 · assessment ───────────────────────── -->
 <section id="assessment">
-  <div class="shead"><span class="snum mono">03</span><h2><span class="zh">考核方式</span><span class="en">Assessment</span></h2></div>
+  <div class="shead"><span class="snum mono">03</span><h2><span class="zh">考核方式</span><span class="en">Grading</span></h2></div>
   <div class="grades">
 
     <div class="grade">
-      <div class="pct">20%</div>
-      <h3><span class="zh">出勤率</span><span class="en">Attendance</span></h3>
-      <p class="zh">上课，积极思考。</p>
-      <p class="en">One paper from the last two or three years — an ALMA/JWST observation or a simulation — 25 minutes plus discussion. A list of candidates circulates in the first week.</p>
+      <div class="pct">10%</div>
+      <h3><span class="zh">出勤率</span><span class="en">Participation</span></h3>
+      <p class="zh"><span class="hl">上课，积极思考。</span></p>
+      <p class="en"><span class="hl">Show up, stay engaged, and think along with us during class.</span></p>
     </div>
 
     <div class="grade">
-      <div class="pct">20%</div>
-      <h3><span class="zh">作业（2次）</span><span class="en">Problem sets (2–3 HW assignments)</span></h3>
-      <p class="zh">解析、编程类。</p>
+      <div class="pct">40%</div>
+      <h3><span class="zh">作业（3 次）</span><span class="en">Homework (3 sets)</span></h3>
+      <p class="zh"><span class="hl">AI在行星科学中的运用。</span><span class="warn">可以讨论，但禁止抄袭。一但发现，抄袭和被抄袭同学成绩都记作不通过。</span></p>
+      <p class="en"><span class="hl">Three problem sets focused on applications of AI in planetary science.</span> <span class="warn">You are encouraged to discuss the problems with your classmates. Plagiarism or unauthorized copying will result in a failing grade for all students involved, including both the student who copied and the student whose work was copied.</span></p>
     </div>
 
     <div class="grade">
-      <div class="pct">60%</div>
+      <div class="pct">50%</div>
       <h3><span class="zh">期末项目</span><span class="en">Final project</span></h3>
-      <p class="zh">30mins口头报告：对行星形成中的某一物理过程进行介绍。由任课教师给定研究内容，在课程过半之后会让抽签选择。</p>
-      <p class="en">A report of about eight pages: either a small research calculation or a critical review with a point of view. Connecting it to your own research is encouraged.</p>
+      <p class="zh"><span class="hl">30 分钟口头报告：
+<br>对行星形成中的物理过程进行介绍。题目由任课教师给定，课程过半后抽签选择。</span></p>
+      <p class="en"><span class="hl">A 30-minute presentation on a selected physical process in planet formation. Topics will be chosen by the instructor, and each student will draw a topic at midterm.</span></p>
     </div>
   </div>
 </section>
 
 <!-- ───────────────────────── 8 · references ───────────────────────── -->
 <section id="refs">
-  <div class="shead"><span class="snum mono">04</span><h2><span class="zh">参考文献</span><span class="en">References</span></h2></div>
+  <div class="shead"><span class="snum mono">04</span><h2><span class="zh">参考文献</span><span class="en">Reading</span></h2></div>
   <div class="refs prose">
-    <h3><span class="zh">综述</span><span class="en">Reviews</span></h3>
+    <h3><span class="zh">综述</span><span class="en">Review articles</span></h3>
     <ul>
       <li>Kley &amp; Nelson (2012), <em>ARA&amp;A</em> <b>50</b>, 211 — <span class="zh">行星–盘相互作用</span><span class="en">planet–disk interaction</span>. <a href="https://doi.org/10.1146/annurev-astro-081811-125523">doi</a></li>
       <li>Andrews (2020), <em>ARA&amp;A</em> <b>58</b>, 483 — <span class="zh">原行星盘结构的观测</span><span class="en">observations of disk structure</span>. <a href="https://doi.org/10.1146/annurev-astro-031220-010302">doi</a></li>
@@ -552,12 +786,12 @@ footer p{margin:0 0 5px}
       <li>Drążkowska et al. (2023), <em>Protostars and Planets VII</em> — <span class="zh">从尘埃到行星</span><span class="en">from dust to planets</span>. <a href="https://arxiv.org/abs/2203.09759">arXiv:2203.09759</a></li>
     </ul>
 
-    <h3><span class="zh">检索工具</span><span class="en">Finding the literature</span></h3>
+    <h3><span class="zh">检索工具</span><span class="en">Where to look things up</span></h3>
     <ul>
-      <li><a href="https://ui.adsabs.harvard.edu/">NASA ADS</a> — <span class="zh">天文文献检索的标准入口，做引文网络分析很方便。</span><span class="en">the standard entry point, and the easiest place to follow a citation network.</span></li>
-      <li><a href="https://arxiv.org/list/astro-ph.EP/recent">arXiv astro-ph.EP</a> — <span class="zh">地球与行星天体物理，每日更新。</span><span class="en">Earth and Planetary Astrophysics, updated daily.</span></li>
-      <li><a href="https://www.alphaxiv.org/">alphaXiv</a> — <span class="zh">在 arXiv 论文上做公开评注。</span><span class="en">open commentary on arXiv papers.</span></li>
-      <li><a href="https://almascience.eso.org/alma-data">ALMA Science Archive</a> · <a href="https://mast.stsci.edu/">MAST</a> — <span class="zh">期末项目若要用真实数据，从这两处取。</span><span class="en">where to get real data if your final project needs it.</span></li>
+      <li><a href="https://ui.adsabs.harvard.edu/">NASA ADS</a> — <span class="zh">天文文献检索的标准入口。</span><span class="en">the standard literature database for astronomy and astrophysics.</span></li>
+      <li><a href="https://arxiv.org/list/astro-ph.EP/recent">arXiv astro-ph.EP</a> — <span class="zh">地球与行星科学文献，每日更新。</span><span class="en">the Earth and Planetary Astrophysics section of arXiv, updated daily with new preprints.</span></li>
+      <li><a href="https://www.alphaxiv.org/">alphaXiv</a> — <span class="zh">架在arXiv之上的第三方论文阅读与讨论平台。</span><span class="en">a platform for reading and discussing arXiv papers, with AI-assisted reading.</span></li>
+
     </ul>
   </div>
 </section>
@@ -565,7 +799,7 @@ footer p{margin:0 0 5px}
 </main>
 
 <footer class="frame">
-  <p><span class="zh">页面最后更新：2026-09-15 21:29 CST</span><span class="en">Last updated 2026-09-15 21:29 CST.</span></p>
+  <p><span class="zh">页面最后更新：2026-09-16 16:29（北京时间）。</span><span class="en">Last updated 2026-09-16 16:29 Beijing time.</span></p>
 </footer>
 
 <script>
@@ -706,11 +940,12 @@ footer p{margin:0 0 5px}
 
   var C = {}, cs;
   function palette(){
-    cs = getComputedStyle(document.documentElement);
+    cs = getComputedStyle(stage || document.documentElement);
     ['paper','surface','ink','body','muted','faint','deep','rule','rule-soft',
      'accent','accent-line','warm'].forEach(function(k){ C[k] = cs.getPropertyValue('--' + k).trim(); });
   }
   palette();
+  window.addEventListener('pf-lang', function(){ palette(); try { render(); } catch (e) {} });
   function lang(){ return document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'zh'; }
 
   /* ── state ── */
@@ -1004,6 +1239,7 @@ footer p{margin:0 0 5px}
     if (lang !== 'en') lang = 'zh';
     root.setAttribute('data-lang', lang);
     root.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
+    window.dispatchEvent(new Event('pf-lang'));
     zh.setAttribute('aria-pressed', String(lang === 'zh'));
     en.setAttribute('aria-pressed', String(lang === 'en'));
     document.title = lang === 'en'
@@ -1037,4 +1273,129 @@ footer p{margin:0 0 5px}
 })();
 </script>
 
+<script>
+/* cool-layer: 进度条 · 入场揭示 · 回到顶部（纯视觉） */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  var prog = document.createElement('div'); prog.id = 'prog';
+  document.body.appendChild(prog);
+
+  var top = document.createElement('button');
+  top.id = 'totop'; top.type = 'button';
+  top.setAttribute('aria-label', 'back to top');
+  top.textContent = '\u2191';
+  top.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+  document.body.appendChild(top);
+
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      prog.style.width = (h > 0 ? Math.min(1, y / h) * 100 : 0) + '%';
+      top.classList.toggle('on', y > 420);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  var items = [].slice.call(document.querySelectorAll(
+    '.shead, .lec, .grade, .book, .refs li, .lede, .tablewrap, .file'
+  ));
+  if (!window.IntersectionObserver || reduce) {
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  items.forEach(function(el){ if (!el.classList.contains('shead')) el.classList.add('pf-rv'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var d = Math.min(240, (el.getAttribute('data-i') | 0) * 45);
+      el.style.transitionDelay = d + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px 0px 0px', threshold: 0.01 });
+
+  setTimeout(function(){
+    items.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight + 200) el.classList.add('in');
+    });
+  }, 1200);
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      items.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight + 200) el.classList.add('in');
+      });
+    }, 400);
+  });
+
+  var groups = {};
+  items.forEach(function(el){
+    var key = el.parentNode;
+    var arr = groups[key] || (groups[key] = []);
+    if (!el.classList.contains('shead')) el.setAttribute('data-i', String(arr.length % 5));
+    arr.push(el);
+    io.observe(el);
+  });
+})();
+</script>
+
+<script>
+/* cool-layer-2: 光斑跟随 · 流星 · hero 视差（纯视觉） */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero = document.querySelector('.hero');
+  if (!hero || reduce) return;
+
+  /* 偶尔划过的流星 */
+  var visible = true;
+  if (window.IntersectionObserver){
+    new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }, {threshold: 0.05}).observe(hero);
+  }
+  function shoot(){
+    var m = document.createElement('div');
+    m.className = 'pf-meteor';
+    m.style.left = (-5 + Math.random() * 78) + '%';
+    m.style.top  = (0 + Math.random() * 46) + '%';
+    m.style.animationDuration = (1.1 + Math.random() * 0.9).toFixed(2) + 's';
+    m.style.opacity = '1';
+    hero.appendChild(m);
+    setTimeout(function(){ m.remove(); }, 2400);
+  }
+  function meteor(){
+    if (visible && !document.hidden && document.documentElement.getAttribute('data-lang') === 'en'){
+      shoot();
+      if (Math.random() < 0.35) setTimeout(shoot, 180 + Math.random() * 420);
+    }
+    setTimeout(meteor, 900 + Math.random() * 1800);
+  }
+  setTimeout(meteor, 900);
+
+  /* hero 视差 */
+  var eb = hero.querySelector('.eyebrow'), h1 = hero.querySelector('h1'), meta = hero.querySelector('.meta');
+  var tick = false;
+  window.addEventListener('scroll', function(){
+    if (tick) return; tick = true;
+    requestAnimationFrame(function(){
+      var y = window.pageYOffset || 0;
+      if (y < 620){
+        var f = y / 620;
+        if (eb)  { eb.style.transform  = 'translate3d(0,' + (y * 0.14) + 'px,0)'; eb.style.opacity  = String(1 - f * 1.25); }
+        if (h1)  { h1.style.transform  = 'translate3d(0,' + (y * 0.10) + 'px,0)'; h1.style.opacity  = String(1 - f * 0.95); }
+        if (meta){ meta.style.transform = 'translate3d(0,' + (y * 0.05) + 'px,0)'; }
+      }
+      tick = false;
+    });
+  }, { passive: true });
+})();
+</script>
