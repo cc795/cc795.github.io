@@ -62,6 +62,7 @@ body{
 h1,h2,h3,h4{font-family:var(--serif); color:var(--deep); text-wrap:balance; margin:0}
 strong,b{color:var(--deep); font-weight:600}
 a{color:var(--deep); text-decoration:none; border-bottom:1px solid var(--accent-line)}
+a.pdf-link::after{content:"↗"; display:inline-block; margin-left:.3em; font-size:.8em; transform:translateY(-1px)}
 a:hover{border-bottom-color:var(--accent); color:var(--accent)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
 p{margin:0 0 .9em}
@@ -573,7 +574,7 @@ html{scrollbar-width:thin; scrollbar-color:var(--accent-line) transparent}
       <div><dt><span class="zh">邮箱</span><span class="en">Email</span></dt><dd><a href="mailto:ccui@nju.edu.cn">ccui@nju.edu.cn</a></dd></div>
       <div><dt><span class="zh">学期</span><span class="en">Term</span></dt><dd><span class="zh">2026秋季</span><span class="en">Fall 2026</span></dd></div>
       <div><dt><span class="zh">上课时间</span><span class="en">Time</span></dt><dd><span class="zh">周四 10:10–12:00</span><span class="en">Thursdays 10:10–12:00</span></dd></div>
-      <div><dt><span class="zh">教室</span><span class="en">Location</span></dt><dd><span class="zh">南雍-东 112</span><span class="en">Nanyong East 112</span></dd></div>
+      <div><dt><span class="zh">教室</span><span class="en">Location</span></dt><dd><span class="zh">南雍-东112/西122</span><span class="en">Nanyong East112/West122</span></dd></div>
       <div><dt><span class="zh">学分</span><span class="en">Credits</span></dt><dd>2</dd></div>
     </dl>
 
@@ -642,7 +643,7 @@ html{scrollbar-width:thin; scrollbar-color:var(--accent-line) transparent}
       <div class="id">L01</div>
       <div class="date">09/17<span class="zh">（周四）</span><span class="en"> (Thu)</span></div>
       <div>
-        <h3><span class="zh">课程大纲与总览</span><span class="en">Course overview</span></h3>
+        <h3><a href="L01.pdf" class="pdf-link"><span class="zh">课程大纲与总览</span><span class="en">Course overview</span></a></h3>
         <p class="zh">总览课程大纲，介绍课程内容、时间线、考核方式等。
 
         <p class="en">An introduction to the scope and structure of the course: how the semester is organized, the key physical stages of planet formation.</p>
