@@ -603,7 +603,7 @@ html{scrollbar-width:thin; scrollbar-color:var(--accent-line) transparent}
       <li>已发现的系外行星有6000余颗（<a href="https://exoplanetarchive.ipac.caltech.edu/" target="_blank" rel="noopener">NASA Exoplanet Archive</a>）。</li>
       <li>行星形成是一门被观测推动的理论。</li>
       <li>过去十五年里，ALMA、JWST 和凌星巡天（KEPLER, K2, TESS等）把这门学科推到了必须对上千个系统负责的地步。</li>
-      <li>本课程按照物理过程组织：（1）建立盘的结构与演化，（2）再处理固体的输运与聚集，（3）最后才谈行星本身的生长、迁移与系统结构。</li>
+      <li>本课程按照物理过程组织：（1）建立盘的结构与演化，（2）固体的输运与聚集，（3）行星本身的生长、迁移与系统结构。</li>
     </ul>
     <ul class="lede en">
       <li>We now know of more than 6,000 exoplanets (<a href="https://exoplanetarchive.ipac.caltech.edu/" target="_blank" rel="noopener">NASA Exoplanet Archive</a>), transforming planet formation from a largely theoretical subject into one that can be tested against a vast and rapidly growing observational data set.</li>
@@ -801,7 +801,7 @@ html{scrollbar-width:thin; scrollbar-color:var(--accent-line) transparent}
 </main>
 
 <footer class="frame">
-  <p><span class="zh">页面最后更新：2026-10-06 20:17（北京时间）。</span><span class="en">Last updated 2026-09-16 16:29 Beijing time.</span></p>
+  <p><span class="zh" id="last-updated-zh">页面最后更新：暂不可用（北京时间）。</span><span class="en" id="last-updated-en">Last updated: unavailable (Beijing time).</span></p>
 </footer>
 
 <script>
@@ -1399,5 +1399,31 @@ html{scrollbar-width:thin; scrollbar-color:var(--accent-line) transparent}
       tick = false;
     });
   }, { passive: true });
+})();
+</script>
+
+<script>
+/* Read the published file timestamp, rather than the visitor's current time. */
+(function () {
+  if (location.protocol !== 'https:' && location.protocol !== 'http:') return;
+  fetch(location.href.split('#')[0], { method: 'HEAD', cache: 'no-store' })
+    .then(function (response) {
+      if (!response.ok) return;
+      var header = response.headers.get('Last-Modified');
+      if (!header) return;
+      var date = new Date(header);
+      if (isNaN(date.getTime())) return;
+      var parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Shanghai',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(date);
+      var fields = {};
+      parts.forEach(function (part) { fields[part.type] = part.value; });
+      var stamp = fields.year + '-' + fields.month + '-' + fields.day + ' ' + fields.hour + ':' + fields.minute;
+      document.getElementById('last-updated-zh').textContent = '页面最后更新：' + stamp + '（北京时间）。';
+      document.getElementById('last-updated-en').textContent = 'Last updated: ' + stamp + ' (Beijing time).';
+    })
+    .catch(function () { /* Keep the unavailable label if the timestamp cannot be read. */ });
 })();
 </script>
