@@ -6,6 +6,7 @@ on:
       - master
       - main
     paths:
+      - "**.pdf"
       - "assets/**"
       - "_sass/**"
       - "_scripts/**"
